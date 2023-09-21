@@ -124,8 +124,15 @@
                 });
             }
             else {
-
-                location.href="Dashboard.html";
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    showConfirmButton: false
+                });
+                setTimeout(function(){
+                    location.href="Dashboard.html";
+                }, 2000)
+                
 
                 /*if (registrationBtnPress == 0) {
                     registrationBtnPress += 1
