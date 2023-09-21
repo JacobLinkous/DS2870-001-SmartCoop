@@ -16,10 +16,10 @@
         <div class="card-body">
             <form id="frmMainLogin">
                 <label class="form-label" for="txtUsername">Username</label>
-                <input class="form-control mb-3" id="txtUsername">
+                <input class="form-control mb-3" id="txtUsername" required>
 
                 <label class="form-label" for="txtPassword">Password</label>
-                <input class="form-control" type="password" id="txtPassword">
+                <input class="form-control" type="password" id="txtPassword" required>
                 
                 <button class="btn col-12 btn-primary mt-3" id="btnLogin" type="button" >Login</button>
                 <button class="btn col-12 btn-warning mt-3" id="btnToRegistration" type="button" >Sign-Up!</button>
@@ -33,39 +33,39 @@
         </div>
         <div class="card-body" id=>
             <form id="frmMainRegistration">
-
+                
                 <label for="txtEmail" class="form-label">Email</label>
-                <input id="txtEmail" type="email" class="form-control">
-
+                <input id="txtEmail" type="email" class="form-control"required>
+            
                 <label for="txtRegisterPassword" class="form-label">Password</label>
-                <input id="txtRegisterPassword" type="password" class="form-control">
+                <input id="txtRegisterPassword" type="password" class="form-control"required>
 
                 <label for="txtFirstName" class="form-label">First Name</label>
-                <input id="txtFirstName" type="text" class="form-control">
+                <input id="txtFirstName" type="text" class="form-control"required>
 
                 <label for="txtLastName" class="form-label">Last Name</label>
-                <input id="txtLastName" type="text" class="form-control">
+                <input id="txtLastName" type="text" class="form-control"required>
 
                 <label for="txtStreetAddress1" class="form-label">Street Address 1</label>
-                <input id="txtStreetAddress1" type="text" class="form-control">
+                <input id="txtStreetAddress1" type="text" class="form-control"required>
 
                 <label for="txtStreetAddress2" class="form-label">Street Address 2</label>
-                <input id="txtStreetAddress2" type="text" class="form-control">
+                <input id="txtStreetAddress2" type="text" class="form-control"required>
 
                 <label for="txtCity" class="form-label">City</label>
-                <input id="txtCity" type="text" class="form-control">
+                <input id="txtCity" type="text" class="form-control"required>
 
                 <label for="txtCity" class="form-label">State</label>
-                <input id="txtCity" type="text" class="form-control">
+                <input id="txtCity" type="text" class="form-control"required>
 
                 <label for="txtZipCode" class="form-label">Zip Code</label>
-                <input id="txtZipCode" type="text" class="form-control">
+                <input id="txtZipCode" type="text" class="form-control"required>
             
                 <label for="txtPhoneNumber" class="form-label">Phone Number</label>
-                <input id="txtPhoneNumber" type="text" class="form-control">
+                <input id="txtPhoneNumber" type="text" class="form-control"required>
 
                 <label for="txtCoopRegistrationID" class="form-label">Phone Number</label>
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2">
+                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2"required>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
@@ -93,12 +93,37 @@
             $('#registerCard').slideUp();
         })
 
-        $('#btnRegister').on('click',function(){
+        $('#btnLogin').on('click', function () {
+        // Check if any input fields are empty
+        const emptyFields = $('#frmMainLogin input').filter(function () {
+            return !$(this).val();
+        });
 
+        if (emptyFields.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Empty Fields',
+                text: 'Please fill in all required fields.',
+                });
+            }
+        })
+        $('#btnRegister').on('click', function () {
+        // Check if any input fields are empty
+        const emptyFields = $('#frmMainRegistration input').filter(function () {
+            return !$(this).val();
+        });
+
+        if (emptyFields.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Empty Fields',
+                text: 'Please fill in all required fields.',
+            });
+        } else {
             if (registrationBtnPress == 0) {
                 registrationBtnPress += 1
-                $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button" >Cancel</button>')
-            }else if(registrationBtnPress > 0){
+                $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
+            } else if (registrationBtnPress > 0) {
                 $('#btnCancel').remove();
                 $('#txtFirstName').val("");
                 $('#txtLastName').val("");
@@ -106,22 +131,24 @@
                 $('#txtRegisterPassword').val("");
                 registrationBtnPress = 0
             }
+        }
+    })
 
-        })
+    $(document).on('click', '#btnCancel', function () {
+        Swal.fire({
+            icon: 'info',
+            title: 'Cancelled',
+            text: 'Registration process was cancelled.',
+        });
+        $('#btnCancel').remove();
+        $('#txtFirstName').val("");
+        $('#txtLastName').val("");
+        $('#txtEmail').val("");
+        $('#txtRegisterPassword').val("");
+        registrationBtnPress = 0;
+    })
+</script>
 
-        $(document).on('click','#btnCancel',function(){
-            alert('Cancel Clicked');
-            $('#btnCancel').remove();
-            $('#txtFirstName').val("");
-            $('#txtLastName').val("");
-            $('#txtEmail').val("");
-            $('#txtRegisterPassword').val("");
-            registrationBtnPress = 0;
-            
-            
-        })
-        
-    </script>
 </body>
 
 </html>
