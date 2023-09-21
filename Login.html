@@ -8,7 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
 <body class="bg-dark text-white">
-    
     <div class="col-8 offset-2 card mt-5 mb-5" id="loginCard">
         <div class="card-header">
             <h3 id="lblLogin">Login Form</h3>
@@ -26,7 +25,6 @@
             </form>
         </div>
     </div>
-
     <div class="col-8 offset-2 card mt-5 mb-5" id="registerCard" style="display: none;">
         <div class="card-header">
             <h3 id="lblRegistration">Registration Form</h3>
@@ -93,10 +91,11 @@
             $('#registerCard').slideUp();
         })
 
-        $('#btnLogin').on('click', function () {
-        // Check if any input fields are empty
-        const emptyFields = $('#frmMainLogin input').filter(function () {
-            return !$(this).val();
+        $('#btnLogin').on('click', function(){
+            // Check if any input fields are empty
+            const emptyFields = $('#frmMainLogin input').filter(function () {
+                return !$(this).val();
+            })
         })
 
         $('#btnLogin').on('click', function(){
@@ -104,32 +103,33 @@
         })       
 
         $('#btnRegister').on('click',function(){
-
-        if (emptyFields.length > 0) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Empty Fields',
-                text: 'Please fill in all required fields.',
+            if (emptyFields.length > 0) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Empty Fields',
+                    text: 'Please fill in all required fields.',
                 });
             }
         })
-        $('#btnRegister').on('click', function () {
+        
+        $('#btnRegister').on('click', function(){
         // Check if any input fields are empty
         const emptyFields = $('#frmMainRegistration input').filter(function () {
             return !$(this).val();
-        });
+        })
+        })
 
-        if (emptyFields.length > 0) {
+        if(emptyFields.length > 0){
             Swal.fire({
                 icon: 'error',
                 title: 'Empty Fields',
-                text: 'Please fill in all required fields.',
-            });
-        } else {
-            if (registrationBtnPress == 0) {
+                text: 'Please fill in all required fields.'
+            })
+        }else{
+            if(registrationBtnPress == 0){
                 registrationBtnPress += 1
                 //$('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
-            } else if (registrationBtnPress > 0) {
+            }else if (registrationBtnPress > 0){
                 $('#btnCancel').remove();
                 $('#txtFirstName').val("");
                 $('#txtLastName').val("");
@@ -137,24 +137,7 @@
                 $('#txtRegisterPassword').val("");
                 registrationBtnPress = 0
             }
-        }
-    })
-
-    /*$(document).on('click', '#btnCancel', function () {
-        Swal.fire({
-            icon: 'info',
-            title: 'Cancelled',
-            text: 'Registration process was cancelled.',
-        });
-        $('#btnCancel').remove();
-        $('#txtFirstName').val("");
-        $('#txtLastName').val("");
-        $('#txtEmail').val("");
-        $('#txtRegisterPassword').val("");
-        registrationBtnPress = 0;
-    })*/
-</script>
-
+        } 
+    </script>
 </body>
-
 </html>
