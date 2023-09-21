@@ -21,7 +21,7 @@
                 <label class="form-label" for="txtPassword">Password</label>
                 <input class="form-control" type="password" id="txtPassword" required>
                 
-                <button class="btn col-12 btn-primary mt-3" id="btnLogin" type="button" >Login</button>
+                <button class="btn col-12 btn-primary mt-3" id="btnLogin" type="button">Login</button>
                 <button class="btn col-12 btn-warning mt-3" id="btnToRegistration" type="button" >Sign-Up!</button>
             </form>
         </div>
@@ -93,11 +93,19 @@
             $('#registerCard').slideUp();
         })
 
+<<<<<<< Updated upstream
         $('#btnLogin').on('click', function () {
         // Check if any input fields are empty
         const emptyFields = $('#frmMainLogin input').filter(function () {
             return !$(this).val();
         });
+=======
+        $('#btnLogin').on('click', function(){
+            location.href='Dashboard.html'
+        })       
+
+        $('#btnRegister').on('click',function(){
+>>>>>>> Stashed changes
 
         if (emptyFields.length > 0) {
             Swal.fire({
