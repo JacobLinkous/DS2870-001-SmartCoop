@@ -64,7 +64,7 @@
                 <label for="txtPhoneNumber" class="form-label">Phone Number</label>
                 <input id="txtPhoneNumber" type="text" class="form-control" required>
 
-                <label for="txtCoopRegistrationID" class="form-label">Phone Number</label>
+                <label for="txtCoopRegistrationID" class="form-label">Registration ID</label>
                 <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
@@ -123,8 +123,11 @@
                     text: 'Please fill in all required fields.',
                 });
             }
-           /* else {
-                if (registrationBtnPress == 0) {
+            else {
+
+                location.href="Dashboard.html";
+
+                /*if (registrationBtnPress == 0) {
                     registrationBtnPress += 1
                     $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
                 } else if (registrationBtnPress > 0) {
@@ -134,8 +137,8 @@
                     $('#txtEmail').val("");
                     $('#txtRegisterPassword').val("");
                     registrationBtnPress = 0
-                }
-            }*/
+                }*/
+            }
         })
     </script>
 </body>
