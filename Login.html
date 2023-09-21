@@ -64,17 +64,12 @@
                 <label for="txtPhoneNumber" class="form-label">Phone Number</label>
                 <input id="txtPhoneNumber" type="text" class="form-control">
 
-<<<<<<< Updated upstream
-                <label for="txtCoopRegistrationID" class="form-label">Phone Number</label>
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2">
-=======
                 <label for="txtCoopRegistrationID" class="form-label">Registration ID</label>
                 <input id="txtCoopRegistrationID" type="text" class="form-control">
->>>>>>> Stashed changes
 
                 <button id="btnRegister" class="btn btn-primary col-12 mt-3" type="button">Register</button>
 
-                <button id="btnBackToLogin" class="btn btn-warning col-12 mt-3" type="button">Login!</button>
+                <button id="btnCancel" class="btn btn-danger col-12 mt-3" type="button">Cancel Registration</button>
         
             </form>
 
@@ -93,7 +88,7 @@
             $('#registerCard').slideDown();
         })
 
-        $('#btnBackToLogin').on('click',function(){
+        $('#btnCancel').on('click',function(){
             $('#loginCard').slideDown();
             $('#registerCard').slideUp();
         })
@@ -102,7 +97,7 @@
 
             if (registrationBtnPress == 0) {
                 registrationBtnPress += 1
-                $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button" >Cancel</button>')
+                //$('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button" >Cancel</button>')
             }else if(registrationBtnPress > 0){
                 $('#btnCancel').remove();
                 $('#txtFirstName').val("");
@@ -114,7 +109,7 @@
 
         })
 
-        $(document).on('click','#btnCancel',function(){
+        /*$(document).on('click','#btnCancel',function(){
             alert('Cancel Clicked');
             $('#btnCancel').remove();
             $('#txtFirstName').val("");
@@ -124,7 +119,7 @@
             registrationBtnPress = 0;
             
             
-        })
+        })*/
         
     </script>
 </body>
