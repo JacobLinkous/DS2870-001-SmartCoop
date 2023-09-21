@@ -91,30 +91,27 @@
             $('#registerCard').slideUp();
         })
 
-        $('#btnLogin').on('click', function(){
+        $('#btnLogin').on('click', function () {
             // Check if any input fields are empty
             const emptyFields = $('#frmMainLogin input').filter(function () {
-                return !$(this).val();
-            })
-        })
+            return !$(this).val();
+        });
 
-        $('#btnLogin').on('click', function(){
-            location.href='Dashboard.html'
-        })       
-
-        $('#btnRegister').on('click',function(){
-            if (emptyFields.length > 0) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Empty Fields',
-                    text: 'Please fill in all required fields.',
+        if (emptyFields.length > 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Empty Fields',
+                text: 'Please fill in all required fields.',
                 });
             }
         })
+     
+
+        
         
         $('#btnRegister').on('click', function(){
         // Check if any input fields are empty
-        const emptyFields = $('#frmMainRegistration input').filter(function () {
+            const emptyFields = $('#frmMainRegistration input').filter(function () {
             return !$(this).val();
         })
         })
@@ -128,7 +125,7 @@
         }else{
             if(registrationBtnPress == 0){
                 registrationBtnPress += 1
-                //$('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
+                $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
             }else if (registrationBtnPress > 0){
                 $('#btnCancel').remove();
                 $('#txtFirstName').val("");
