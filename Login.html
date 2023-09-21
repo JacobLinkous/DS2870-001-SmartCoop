@@ -93,19 +93,17 @@
             $('#registerCard').slideUp();
         })
 
-<<<<<<< Updated upstream
         $('#btnLogin').on('click', function () {
         // Check if any input fields are empty
         const emptyFields = $('#frmMainLogin input').filter(function () {
             return !$(this).val();
-        });
-=======
+        })
+
         $('#btnLogin').on('click', function(){
             location.href='Dashboard.html'
         })       
 
         $('#btnRegister').on('click',function(){
->>>>>>> Stashed changes
 
         if (emptyFields.length > 0) {
             Swal.fire({
