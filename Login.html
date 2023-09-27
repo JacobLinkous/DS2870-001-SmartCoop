@@ -13,7 +13,7 @@
 <body class="bg-dark text-white">
     <div class="col-8 offset-2 card mt-5 mb-5" id="loginCard">
         <div class="card-header">
-            <h3 id="lblLogin">Login Form</h3>
+            <h3 id="lblLogin">Login</h3>
         </div>
         <div class="card-body">
             <form id="frmMainLogin">
@@ -30,46 +30,46 @@
     </div>
     <div class="col-8 offset-2 card mt-5 mb-5" id="registerCard" style="display: none;">
         <div class="card-header">
-            <h3 id="lblRegistration">Registration Form</h3>
+            <h3 id="lblRegistration">Registration</h3>
         </div>
-        <div class="card-body" id=>
+        <div class="card-body">
             <form id="frmMainRegistration">
-                <label for="txtEmail" class="form-label">Email</label>
+                <label for="txtEmail" class="form-label">Email*</label>
                 <input id="txtEmail" type="email" class="form-control" required>
 
-                <label for="txtRegisterPassword" class="form-label">Password</label>
+                <label for="txtRegisterPassword" class="form-label">Password*</label>
                 <input id="txtRegisterPassword" type="password" class="form-control" required>
 
-                <label for="txtFirstName" class="form-label">First Name</label>
+                <label for="txtFirstName" class="form-label">First Name*</label>
                 <input id="txtFirstName" type="text" class="form-control" required>
 
-                <label for="txtLastName" class="form-label">Last Name</label>
+                <label for="txtLastName" class="form-label">Last Name*</label>
                 <input id="txtLastName" type="text" class="form-control" required>
 
-                <label for="txtStreetAddress1" class="form-label">Street Address 1</label>
+                <label for="txtStreetAddress1" class="form-label">Street Address 1*</label>
                 <input id="txtStreetAddress1" type="text" class="form-control" required>
 
                 <label for="txtStreetAddress2" class="form-label">Street Address 2</label>
                 <input id="txtStreetAddress2" type="text" class="form-control" required>
 
-                <label for="txtCity" class="form-label">City</label>
+                <label for="txtCity" class="form-label">City*</label>
                 <input id="txtCity" type="text" class="form-control" required>
 
-                <label for="txtCity" class="form-label">State</label>
-                <input id="txtCity" type="text" class="form-control" required>
+                <label for="txtState" class="form-label">State*</label>
+                <input id="txtState" type="text" class="form-control" required>
 
-                <label for="txtZipCode" class="form-label">Zip Code</label>
-                <input id="txtZipCode" type="text" class="form-control" required>
+                <label for="txtZipCode" class="form-label">Zip Code*</label>
+                <input id="txtZipCode" type="number" class="form-control" required>
 
-                <label for="txtPhoneNumber" class="form-label">Phone Number</label>
-                <input id="txtPhoneNumber" type="text" class="form-control" required>
+                <label for="txtPhoneNumber" class="form-label">Phone Number*</label>
+                <input id="txtPhoneNumber" type="number" class="form-control" required>
 
-                <label for="txtCoopRegistrationID" class="form-label">Registration ID</label>
+                <label for="txtCoopRegistrationID" class="form-label">Registration ID*</label>
                 <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
-                <button id="btnCancel" class="btn btn-danger col-12 mt-3" type="button">Cancel Registration</button>
+                <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel Registration</button>
             </form>
         </div>
 
@@ -94,33 +94,104 @@
         })
 
         $('#btnLogin').on('click', function () {
-            // Check if any input fields are empty
-            const emptyFields = $('#frmMainLogin input').filter(function () {
-                return !$(this).val();
-            });
+            let strUsername = $('#txtUsername').val();
+            let strPassword = $('#txtPassword').val();
+            let blnError = false;
+            let strErrorMessage = '';
 
-            if (emptyFields.length > 0) {
+            if(strUsername == ''){ 
+                blnError = true;
+                strErrorMessage += "Username can't be blank. ";
+            }
+            if(strPassword == ''){ 
+                blnError = true;
+                strErrorMessage += "Password can't be blank. ";
+            }
+
+            if (blnError == true) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Empty Fields',
-                    text: 'Please fill in all required fields.',
+                    text: strErrorMessage,
                 });
             }else{
-                location.href="Dashboard.html";
+                $('#registerCard').slideUp();
+                $('#loginCard').slideUp();
             }
-        })
+        });
 
         $('#btnRegister').on('click', function () {
-            // Check if any input fields are empty
-            const emptyFields = $('#frmMainRegistration input').filter(function () {
-                return !$(this).val();
-            });
+            let strEmail = $('#txtEmail').val();
+            let strRegisterPassword = $('#txtRegisterPassword').val();
+            let strFirstName = $('#txtFirstName').val();
+            let strLastName = $('#txtLastName').val();
+            let strStreetAddress1 = $('#txtStreetAddress1').val();
+            let strCity = $('#txtCity').val();
+            let strState = $('#txtState').val();
+            let strZipCode = $('#txtZipCode').val();
+            let strPhoneNumber = $('#txtPhoneNumber').val();
+            let strCoopRegistrationID = $('#txtCoopRegistrationID').val();
+            
+            let blnError = false;
+            let strErrorMessage = '';
 
-            if (emptyFields.length > 0) {
+            if(strEmail == ''){ 
+                blnError = true;
+                strErrorMessage += "Email can't be blank. ";
+            }
+            if(strRegisterPassword == ''){ 
+                blnError = true;
+                strErrorMessage += "Password can't be blank. ";
+            }
+            if(strFirstName == ''){ 
+                blnError = true;
+                strErrorMessage += "First Name can't be blank. ";
+            }
+            if(strLastName == ''){ 
+                blnError = true;
+                strErrorMessage += "Last Name can't be blank. ";
+            }
+            if(strStreetAddress1 == ''){ 
+                blnError = true;
+                strErrorMessage += "Street Address can't be blank. ";
+            }
+            if(strCity == ''){ 
+                blnError = true;
+                strErrorMessage += "City can't be blank. ";
+            }
+            if(strState == ''){ 
+                blnError = true;
+                strErrorMessage += "State can't be blank. ";
+            }
+            if(strZipCode == ''){ 
+                blnError = true;
+                strErrorMessage += "Zip Code can't be blank. ";
+            }
+            if(strPhoneNumber == ''){ 
+                blnError = true;
+                strErrorMessage += "Phone Number can't be blank. ";
+            }
+            if(strCoopRegistrationID == ''){ 
+                blnError = true;
+                strErrorMessage += "Registration ID can't be blank. ";
+            }
+
+            if (blnError == true) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Empty Fields',
-                    text: 'Please fill in all required fields.',
+                    text: strErrorMessage,
+                });
+            }else{
+                $('#registerCard').slideUp();
+                $('#loginCard').slideUp();
+            }
+
+            if (blnError == true) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Empty Fields',
+                    text: strErrorMessage,
                 });
             }
             else {
@@ -130,21 +201,10 @@
                     showConfirmButton: false
                 });
                 setTimeout(function(){
-                    location.href="Dashboard.html";
-                }, 2000)
-                
-
-                /*if (registrationBtnPress == 0) {
-                    registrationBtnPress += 1
-                    $('#frmMainRegistration').append('<button class="btn col-12 btn-danger mt-3" id="btnCancel" type="button">Cancel</button>')
-                } else if (registrationBtnPress > 0) {
-                    $('#btnCancel').remove();
-                    $('#txtFirstName').val("");
-                    $('#txtLastName').val("");
-                    $('#txtEmail').val("");
-                    $('#txtRegisterPassword').val("");
-                    registrationBtnPress = 0
-                }*/
+                    Swal.close()
+                    $('#registerCard').slideUp();
+                    $('#loginCard').slideUp();
+                }, 2000);
             }
         })
     </script>
