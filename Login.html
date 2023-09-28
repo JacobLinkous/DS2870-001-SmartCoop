@@ -18,10 +18,10 @@
         body {
             background-color: #92c4ac;
             font-family: "Arial", sans-serif;
-           /* background-image: url('ChickenCoopBackground.png');
-            background-size: cover; 
-            background-repeat: no-repeat; 
-            background-attachment: fixed; */
+            background-image: url('ChickenCoopBackground.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         .card {
@@ -79,6 +79,12 @@
             background-color: #3b874c;
             color: #fff
         }
+
+        @media screen and (max-width: 768px) {
+            h2 {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -88,12 +94,16 @@
             <h3 id="lblLogin">
                 <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
                     Welcome to Smart Coops! <br>
-                    <span style="font-size: 1.5rem;">Where every egg-citing adventure begins with a click.</span>
+                    <h2>
+                        <span style="font-size: 1.5rem;">
+                            Where every egg-citing adventure begins with a click.
+                        </span>
+                    </h2>
                 </span>
             </h3>
         </div>
         <div class="card-body">
-            <form id="frmMainLogin">                   
+            <form id="frmMainLogin">
                 <label class="form-label" for="txtUsername">Username</label>
                 <input class="form-control mb-3" id="txtUsername" required>
 
