@@ -5,18 +5,95 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Smart Coop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <!-- Add Google Fonts link -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap">
+
+    <style>
+        body {
+            background-color: #92c4ac;
+            font-family: "Arial", sans-serif;
+           /* background-image: url('ChickenCoopBackground.png');
+            background-size: cover; 
+            background-repeat: no-repeat; 
+            background-attachment: fixed; */
+        }
+
+        .card {
+            background-color: #f2f2f2;
+            border-radius: 15px;
+        }
+
+        .card-header {
+            background-color: #5a8770;
+            color: white;
+            font-weight: bold;
+            border-bottom: none;
+            border-radius: 0;
+        }
+
+        .form-control {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #5a8770;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-warning {
+            background-color: #ffaa3c;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn-outline-danger {
+            border-color: #ff3c3c;
+            color: #ff3c3c;
+        }
+
+        #btnLogin:hover {
+            background-color: #357942;
+            color: #fff
+        }
+
+        #btnLogin {
+            background-color: #3b874c;
+            color: #fff
+        }
+
+        #btnRegister:hover {
+            background-color: #357942;
+            color: #fff
+        }
+
+        #btnRegister {
+            background-color: #3b874c;
+            color: #fff
+        }
+    </style>
 </head>
 
-<body class="bg-dark text-white">
+<body class="text-white">
     <div class="col-8 offset-2 card mt-5 mb-5" id="loginCard">
-        <div class="card-header">
-            <h3 id="lblLogin">Login</h3>
+        <div class="card-header text-center">
+            <h3 id="lblLogin">
+                <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
+                    Welcome to Smart Coops! <br>
+                    <span style="font-size: 1.5rem;">Where every egg-citing adventure begins with a click.</span>
+                </span>
+            </h3>
         </div>
         <div class="card-body">
-            <form id="frmMainLogin">
+            <form id="frmMainLogin">                   
                 <label class="form-label" for="txtUsername">Username</label>
                 <input class="form-control mb-3" id="txtUsername" required>
 
@@ -24,13 +101,18 @@
                 <input class="form-control" type="password" id="txtPassword" required>
 
                 <button class="btn col-12 btn-primary mt-3" id="btnLogin" type="button">Login</button>
-                <button class="btn col-12 btn-warning mt-3" id="btnToRegistration" type="button">Sign-Up!</button>
+                <button class="btn col-12 btn-warning mt-3" id="btnToRegistration" type="button"
+                    style="color:#fff">Sign-Up!</button>
             </form>
         </div>
     </div>
     <div class="col-8 offset-2 card mt-5 mb-5" id="registerCard" style="display: none;">
-        <div class="card-header">
-            <h3 id="lblRegistration">Registration</h3>
+        <div class="card-header text-center">
+            <h3 id="lblRegistration">
+                <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
+                    Sign Up To Join The Coop Family!
+                </span>
+            </h3>
         </div>
         <div class="card-body">
             <form id="frmMainRegistration">
@@ -69,7 +151,8 @@
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
-                <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel Registration</button>
+                <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel
+                    Registration</button>
             </form>
         </div>
 
@@ -99,11 +182,11 @@
             let blnError = false;
             let strErrorMessage = '';
 
-            if(strUsername == ''){ 
+            if (strUsername == '') {
                 blnError = true;
                 strErrorMessage += "Username can't be blank. ";
             }
-            if(strPassword == ''){ 
+            if (strPassword == '') {
                 blnError = true;
                 strErrorMessage += "Password can't be blank. ";
             }
@@ -114,7 +197,7 @@
                     title: 'Empty Fields',
                     text: strErrorMessage,
                 });
-            }else{
+            } else {
                 $('#registerCard').slideUp();
                 $('#loginCard').slideUp();
             }
@@ -131,47 +214,47 @@
             let strZipCode = $('#txtZipCode').val();
             let strPhoneNumber = $('#txtPhoneNumber').val();
             let strCoopRegistrationID = $('#txtCoopRegistrationID').val();
-            
+
             let blnError = false;
             let strErrorMessage = '';
 
-            if(strEmail == ''){ 
+            if (strEmail == '') {
                 blnError = true;
                 strErrorMessage += "Email can't be blank. ";
             }
-            if(strRegisterPassword == ''){ 
+            if (strRegisterPassword == '') {
                 blnError = true;
                 strErrorMessage += "Password can't be blank. ";
             }
-            if(strFirstName == ''){ 
+            if (strFirstName == '') {
                 blnError = true;
                 strErrorMessage += "First Name can't be blank. ";
             }
-            if(strLastName == ''){ 
+            if (strLastName == '') {
                 blnError = true;
                 strErrorMessage += "Last Name can't be blank. ";
             }
-            if(strStreetAddress1 == ''){ 
+            if (strStreetAddress1 == '') {
                 blnError = true;
                 strErrorMessage += "Street Address can't be blank. ";
             }
-            if(strCity == ''){ 
+            if (strCity == '') {
                 blnError = true;
                 strErrorMessage += "City can't be blank. ";
             }
-            if(strState == ''){ 
+            if (strState == '') {
                 blnError = true;
                 strErrorMessage += "State can't be blank. ";
             }
-            if(strZipCode == ''){ 
+            if (strZipCode == '') {
                 blnError = true;
                 strErrorMessage += "Zip Code can't be blank. ";
             }
-            if(strPhoneNumber == ''){ 
+            if (strPhoneNumber == '') {
                 blnError = true;
                 strErrorMessage += "Phone Number can't be blank. ";
             }
-            if(strCoopRegistrationID == ''){ 
+            if (strCoopRegistrationID == '') {
                 blnError = true;
                 strErrorMessage += "Registration ID can't be blank. ";
             }
@@ -182,7 +265,7 @@
                     title: 'Empty Fields',
                     text: strErrorMessage,
                 });
-            }else{
+            } else {
                 $('#registerCard').slideUp();
                 $('#loginCard').slideUp();
             }
@@ -200,7 +283,7 @@
                     title: 'Registration Successful',
                     showConfirmButton: false
                 });
-                setTimeout(function(){
+                setTimeout(function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp();
