@@ -103,12 +103,12 @@
             </h3>
         </div>
         <div class="card-body">
-            <form id="frmMainLogin">                   
-                <label class="form-label" for="txtUsername">Username</label>
-                <input class="form-control mb-3" id="txtUsername" required>
+            <form id="frmMainLogin">
+                <label class="form-label" for="txtUsername">Email</label>
+                <input class="form-control mb-3" id="txtUsername" type="email" required>
 
-                <!--<label class="form-label" for="txtPassword">Password</label>-->
-                <input class="form-control" type="password" id="txtPassword" placeholder="Password"required>
+                <label class="form-label" for="txtPassword">Password</label>
+                <input class="form-control" type="password" id="txtPassword" required>
 
                 <button class="btn col-12 mt-3" id="btnLogin" type="button">Login</button>
                 <button class="btn col-12 btn-warning mt-3" id="btnToRegistration" type="button"
@@ -127,10 +127,11 @@
         <div class="card-body">
             <form id="frmMainRegistration">
                 <!--<label for="txtEmail" class="form-label">Email*</label>-->
-                <input id="txtEmail" type="email" class="form-control mb-2" placeholder="Email" required>
+                <input id="txtEmail" type="email" class="form-control mb-2" placeholder="Email*" required>
 
                 <!--<label for="txtRegisterPassword" class="form-label">Password*</label>-->
-                <input id="txtRegisterPassword" type="password" class="form-control mb-2" placeholder="Password*" required>
+                <input id="txtRegisterPassword" type="password" class="form-control mb-2" placeholder="Password*"
+                    required>
 
                 <!--<label for="txtFirstName" class="form-label">First Name*</label>-->
                 <input id="txtFirstName" type="text" class="form-control mb-2" placeholder="First Name*" required>
@@ -139,10 +140,12 @@
                 <input id="txtLastName" type="text" class="form-control mb-2" placeholder="Last Name*" required>
 
                 <!--<label for="txtStreetAddress1" class="form-label">Street Address 1*</label>-->
-                <input id="txtStreetAddress1" type="text" class="form-control mb-2" placeholder="Street Address 1*" required>
+                <input id="txtStreetAddress1" type="text" class="form-control mb-2" placeholder="Street Address 1*"
+                    required>
 
                 <!--<label for="txtStreetAddress2" class="form-label">Street Address 2</label>-->
-                <input id="txtStreetAddress2" type="text" class="form-control mb-2" placeholder="Street Address 2" required>
+                <input id="txtStreetAddress2" type="text" class="form-control mb-2" placeholder="Street Address 2"
+                    required>
 
                 <!--<label for="txtCity" class="form-label">City*</label>-->
                 <input id="txtCity" type="text" class="form-control mb-2" placeholder="City*" required>
@@ -157,11 +160,13 @@
                 <input id="txtPhoneNumber" type="number" class="form-control mb-2" placeholder="Phone Number*" required>
 
                 <!--<label for="txtCoopRegistrationID" class="form-label">Registration ID*</label>-->
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" placeholder="Registration ID*" required>
+                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" placeholder="Registration ID*"
+                    required>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
-                <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel Registration</button>
+                <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel
+                    Registration</button>
             </form>
         </div>
 
@@ -185,16 +190,27 @@
             $('#registerCard').slideUp();
         })
 
+        function validateEmail(strEmail){
+            if(strEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+                return true;
+            }
+            return false;
+        };
+
         $('#btnLogin').on('click', function () {
-            let strUsername = $('#txtUsername').val();
+            let strUsername = $('#txtUsername').val().trim();
             let strPassword = $('#txtPassword').val();
             let blnError = false;
             let strErrorMessage = '';
-
+            
             if (strUsername == '') {
+                blnError = true; 
+                strErrorMessage += "<h5>Email can't be blank.</h5>";
+            }else if(!validateEmail(strUsername)){
                 blnError = true;
-                strErrorMessage += "<h5>Username can't be blank.</h5>";
+                strErrorMessage += "<h5>Email is invalid.</h5>";
             }
+
             if (strPassword == '') {
                 blnError = true;
                 strErrorMessage += "<h5>Password can't be blank.</h5>";
@@ -213,7 +229,8 @@
         });
 
         $('#btnRegister').on('click', function () {
-            let strEmail = $('#txtEmail').val();
+            console.log("test")
+            let strEmail = $('#txtEmail').val().trim();
             let strRegisterPassword = $('#txtRegisterPassword').val();
             let strFirstName = $('#txtFirstName').val();
             let strLastName = $('#txtLastName').val();
@@ -228,8 +245,11 @@
             let strErrorMessage = '';
 
             if (strEmail == '') {
-                blnError = true;
+                blnError = true; 
                 strErrorMessage += "<h5>Email can't be blank.</h5>";
+            }else if(!validateEmail(strEmail)){
+                blnError = true;
+                strErrorMessage += "<h5>Email is invalid.</h5>";
             }
             if (strRegisterPassword == '') {
                 blnError = true;
