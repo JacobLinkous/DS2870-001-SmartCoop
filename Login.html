@@ -126,42 +126,28 @@
         </div>
         <div class="card-body">
             <form id="frmMainRegistration">
-                <!--<label for="txtEmail" class="form-label">Email*</label>-->
                 <input id="txtEmail" type="email" class="form-control mb-2" placeholder="Email*" required>
 
-                <!--<label for="txtRegisterPassword" class="form-label">Password*</label>-->
                 <input id="txtRegisterPassword" type="password" class="form-control mb-2" placeholder="Password*"
                     required>
 
-                <!--<label for="txtFirstName" class="form-label">First Name*</label>-->
                 <input id="txtFirstName" type="text" class="form-control mb-2" placeholder="First Name*" required>
 
-                <!--<label for="txtLastName" class="form-label">Last Name*</label>-->
                 <input id="txtLastName" type="text" class="form-control mb-2" placeholder="Last Name*" required>
 
-                <!--<label for="txtStreetAddress1" class="form-label">Street Address 1*</label>-->
-                <input id="txtStreetAddress1" type="text" class="form-control mb-2" placeholder="Street Address 1*"
-                    required>
+                <input id="txtStreetAddress1" type="text" class="form-control mb-2" placeholder="Street Address 1*" required>
 
-                <!--<label for="txtStreetAddress2" class="form-label">Street Address 2</label>-->
-                <input id="txtStreetAddress2" type="text" class="form-control mb-2" placeholder="Street Address 2"
-                    required>
+                <input id="txtStreetAddress2" type="text" class="form-control mb-2" placeholder="Street Address 2" required>
 
-                <!--<label for="txtCity" class="form-label">City*</label>-->
                 <input id="txtCity" type="text" class="form-control mb-2" placeholder="City*" required>
 
-                <!--<label for="txtState" class="form-label">State*</label>-->
                 <input id="txtState" type="text" class="form-control mb-2" placeholder="State*" required>
 
-                <!--<label for="txtZipCode" class="form-label">Zip Code*</label>-->
                 <input id="txtZipCode" type="number" class="form-control mb-2" placeholder="Zip Code*" required>
 
-                <!--<label for="txtPhoneNumber" class="form-label">Phone Number*</label>-->
                 <input id="txtPhoneNumber" type="tel" class="form-control mb-2" placeholder="Phone Number*" required>
 
-                <!--<label for="txtCoopRegistrationID" class="form-label">Registration ID*</label>-->
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" placeholder="Registration ID*"
-                    required>
+                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" placeholder="Registration ID*" required>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
@@ -229,7 +215,6 @@
         });
 
         $('#btnRegister').on('click', function () {
-            console.log("test")
             let strEmail = $('#txtEmail').val().trim();
             let strRegisterPassword = $('#txtRegisterPassword').val();
             let strFirstName = $('#txtFirstName').val();
