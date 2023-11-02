@@ -1,0 +1,70 @@
+body {
+    background-color: #92c4ac;
+    font-family: "Arial", sans-serif;
+    background-image: url('ChickenCoopBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.card {
+    background-color: #f2f2f2;
+    border-radius: 15px;
+}
+
+.card-header {
+    background-color: #5a8770;
+    color: white;
+    font-weight: bold;
+    border-bottom: none;
+    border-radius: 0;
+}
+
+.form-control {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-primary {
+    background-color: #5a8770;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-warning {
+    background-color: #ffaa3c;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn-outline-danger {
+    border-color: #ff3c3c;
+    color: #ff3c3c;
+}
+
+#btnLogin:hover {
+    background-color: #357942;
+    color: #fff
+}
+
+#btnLogin {
+    background-color: #3b874c;
+    color: #fff
+}
+
+#btnRegister:hover {
+    background-color: #357942;
+    color: #fff
+}
+
+#btnRegister {
+    background-color: #3b874c;
+    color: #fff
+}
+
+@media screen and (max-width: 768px) {
+    h2 {
+        display: none;
+    }
+}
