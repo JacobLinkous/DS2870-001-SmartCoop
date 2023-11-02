@@ -32,7 +32,9 @@ $('#btnLogin').on('click', function () {
         });
     } else {
         $('#registerCard').slideUp();
-        $('#loginCard').slideUp();
+        $('#loginCard').slideUp(function(){
+            $('#dashboardCard').slideDown();
+        });
     }
 });
 
