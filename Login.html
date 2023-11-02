@@ -18,7 +18,7 @@
         body {
             background-color: #92c4ac;
             font-family: "Arial", sans-serif;
-           /* background-image: url('ChickenCoopBackground.png');
+            /* background-image: url('ChickenCoopBackground.png');
             background-size: cover; 
             background-repeat: no-repeat; 
             background-attachment: fixed; */
@@ -79,6 +79,50 @@
             background-color: #3b874c;
             color: #fff
         }
+
+        #registerCard {
+            max-width: 400px;
+            /* Set the maximum width of the card */
+            margin: 0 auto;
+            /* Center the card horizontally */
+            padding: 20px;
+        }
+
+        /* Apply flexbox layout to form-row */
+        .form-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            /* Align form-groups side by side with space in between */
+        }
+
+        /* Adjust the form-group elements within form-row */
+        .form-row .form-group {
+            flex: 1;
+            /* Each form-group takes equal width */
+            margin-right: 15px;
+            /* Add spacing between form-groups */
+        }
+
+        /* Remove margin for the last form-group element */
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+
+        /* Style labels */
+        .form-group label {
+            margin-bottom: 5px;
+            display: block;
+            /* Add any other label styles as needed */
+        }
+
+        /* Ensure input fields take 100% width */
+        .form-group input {
+            width: 100%;
+            box-sizing: border-box;
+            /* Include padding and border in the width */
+            /* Add any other input field styles as needed */
+        }
     </style>
 </head>
 
@@ -93,7 +137,7 @@
             </h3>
         </div>
         <div class="card-body">
-            <form id="frmMainLogin">                   
+            <form id="frmMainLogin">
                 <label class="form-label" for="txtUsername">Username</label>
                 <input class="form-control mb-3" id="txtUsername" required>
 
@@ -106,48 +150,83 @@
             </form>
         </div>
     </div>
-    <div class="col-8 offset-2 card mt-5 mb-5" id="registerCard" style="display: none;">
+    <div class="col-6 offset-3 card mt-5 mb-5" id="registerCard" style="display: none;">
         <div class="card-header text-center">
-            <h3 id="lblRegistration">
-                <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
-                    Sign Up To Join The Coop Family!
-                </span>
+            <h3 id="lblRegistration" class="signup-heading">
+                Sign Up To Join The Coop Family!
             </h3>
         </div>
         <div class="card-body">
             <form id="frmMainRegistration">
-                <label for="txtEmail" class="form-label">Email*</label>
-                <input id="txtEmail" type="email" class="form-control" required>
+                <div class="form-group">
+                    <label for="txtEmail">Email*</label>
+                    <input id="txtEmail" type="email" class="form-control" required>
+                </div>
 
-                <label for="txtRegisterPassword" class="form-label">Password*</label>
-                <input id="txtRegisterPassword" type="password" class="form-control" required>
+                <div class="form-group">
+                    <label for="txtRegisterPassword">Password*</label>
+                    <input id="txtRegisterPassword" type="password" class="form-control" required>
+                </div>
 
-                <label for="txtFirstName" class="form-label">First Name*</label>
-                <input id="txtFirstName" type="text" class="form-control" required>
+                <div class="form-row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="txtFirstName">First Name*</label>
+                            <input id="txtFirstName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="txtLastName">Last Name*</label>
+                            <input id="txtLastName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
 
-                <label for="txtLastName" class="form-label">Last Name*</label>
-                <input id="txtLastName" type="text" class="form-control" required>
+                <div class="form-group">
+                    <label for="txtStreetAddress1">Street Address 1*</label>
+                    <input id="txtStreetAddress1" type="text" class="form-control" required>
+                </div>
 
-                <label for="txtStreetAddress1" class="form-label">Street Address 1*</label>
-                <input id="txtStreetAddress1" type="text" class="form-control" required>
+                <div class="form-group">
+                    <label for="txtStreetAddress2">Street Address 2</label>
+                    <input id="txtStreetAddress2" type="text" class="form-control">
+                </div>
 
-                <label for="txtStreetAddress2" class="form-label">Street Address 2</label>
-                <input id="txtStreetAddress2" type="text" class="form-control" required>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtCity">City*</label>
+                            <input id="txtCity" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtState">State*</label>
+                            <input id="txtState" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtZipCode">Zip Code*</label>
+                            <input id="txtZipCode" type="number" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtPhoneNumber">Phone Number*</label>
+                            <input id="txtPhoneNumber" type="number" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
 
-                <label for="txtCity" class="form-label">City*</label>
-                <input id="txtCity" type="text" class="form-control" required>
 
-                <label for="txtState" class="form-label">State*</label>
-                <input id="txtState" type="text" class="form-control" required>
-
-                <label for="txtZipCode" class="form-label">Zip Code*</label>
-                <input id="txtZipCode" type="number" class="form-control" required>
-
-                <label for="txtPhoneNumber" class="form-label">Phone Number*</label>
-                <input id="txtPhoneNumber" type="number" class="form-control" required>
-
-                <label for="txtCoopRegistrationID" class="form-label">Registration ID*</label>
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
+                <div class="form-group">
+                    <label for="txtCoopRegistrationID">Registration ID*</label>
+                    <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
+                </div>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
@@ -155,7 +234,6 @@
                     Registration</button>
             </form>
         </div>
-
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
