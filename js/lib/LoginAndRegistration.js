@@ -40,11 +40,6 @@ $('#btnLogin').on('click', function () {
                 })
             } else {
                 sessionStorage.setItem("SessionID", sessionResult.SessionID);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Registration Successful',
-                    showConfirmButton: false
-                });
                 setTimeout(function () {
                     Swal.close()
                     $('#loginCard').slideToggle();
