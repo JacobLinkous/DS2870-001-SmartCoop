@@ -111,7 +111,7 @@ $('#btnRegister').on('click', function () {
                     html:result.Error
                 })
             } else {
-                $.post('https://simplecoop.swollenhippo.com/useradress.php',{Email:strEmail,Street1:strStreetAddress1,Street:strStreetAddress2,City:strCity,State:strState,ZIP:strZipCode},function(addressResult){
+                $.post('https://simplecoop.swollenhippo.com/useraddress.php',{Email:strEmail,Street1:strStreetAddress1,Street2:strStreetAddress2,City:strCity,State:strState,ZIP:strZipCode},function(addressResult){
                     result = JSON.parse(addressResult);
                     if(addressResult.Error){
                         Swal.fire({
