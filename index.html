@@ -53,33 +53,80 @@
         </div>
         <div class="card-body">
             <form id="frmMainRegistration">
-                <input id="txtEmail" type="email" class="form-control mb-2" placeholder="Email*" required>
+                <div class="form-group">
+                    <label for="txtEmail">Email*</label>
+                    <input id="txtEmail" type="email" class="form-control" required>
+                </div>
 
-                <input id="txtRegisterPassword" type="password" class="form-control mb-2" placeholder="Password*"
-                    required>
+                <div class="form-group">
+                    <label for="txtRegisterPassword">Password*</label>
+                    <input id="txtRegisterPassword" type="password" class="form-control" required>
+                </div>
 
-                <input id="txtFirstName" type="text" class="form-control mb-2" placeholder="First Name*" required>
+                <div class="form-row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="txtFirstName">First Name*</label>
+                            <input id="txtFirstName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="txtLastName">Last Name*</label>
+                            <input id="txtLastName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
 
-                <input id="txtLastName" type="text" class="form-control mb-2" placeholder="Last Name*" required>
+                <div class="form-group">
+                    <label for="txtStreetAddress1">Street Address 1*</label>
+                    <input id="txtStreetAddress1" type="text" class="form-control" required>
+                </div>
 
-                <input id="txtStreetAddress1" type="text" class="form-control mb-2" placeholder="Street Address 1*" required>
+                <div class="form-group">
+                    <label for="txtStreetAddress2">Street Address 2</label>
+                    <input id="txtStreetAddress2" type="text" class="form-control">
+                </div>
 
-                <input id="txtStreetAddress2" type="text" class="form-control mb-2" placeholder="Street Address 2" required>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtCity">City*</label>
+                            <input id="txtCity" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="txtState">State*</label>
+                            <input id="txtState" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="txtZipCode">Zip Code*</label>
+                            <input id="txtZipCode" type="number" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="txtPhoneNumber">Phone Number*</label>
+                            <input id="txtPhoneNumber" type="number" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
 
-                <input id="txtCity" type="text" class="form-control mb-2" placeholder="City*" required>
-
-                <input id="txtState" type="text" class="form-control mb-2" placeholder="State*" required>
-
-                <input id="txtZipCode" type="number" class="form-control mb-2" placeholder="Zip Code*" required>
-
-                <input id="txtPhoneNumber" type="tel" class="form-control mb-2" placeholder="Phone Number*" required>
-
-                <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" placeholder="Registration ID*" required>
+                <div class="form-group">
+                    <label for="txtCoopRegistrationID">Registration ID*</label>
+                    <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
+                </div>
 
                 <button id="btnRegister" class="btn btn-primary col-12" type="button">Register</button>
 
                 <button id="btnCancel" class="btn btn-outline-danger col-12 mt-3" type="button">Cancel
                     Registration</button>
+            </form>
             </form>
         </div>
 
