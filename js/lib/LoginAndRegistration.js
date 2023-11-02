@@ -42,6 +42,7 @@ $('#btnRegister').on('click', function () {
     let strFirstName = $('#txtFirstName').val();
     let strLastName = $('#txtLastName').val();
     let strStreetAddress1 = $('#txtStreetAddress1').val();
+    let strStreetAddress2 = $('#txtStreetAddress2').val();
     let strCity = $('#txtCity').val();
     let strState = $('#txtState').val();
     let strZipCode = $('#txtZipCode').val();
@@ -102,15 +103,46 @@ $('#btnRegister').on('click', function () {
             html: strErrorMessage,
         });
     } else {
-        Swal.fire({
-            icon: 'success',
-            title: 'Registration Successful',
-            showConfirmButton: false
-        });
-        setTimeout(function () {
-            Swal.close()
-            $('#registerCard').slideUp();
-            $('#loginCard').slideUp();
-        }, 2000);
+        $.post('https://simplecoop.swollenhippo.com/users.php',{Email:strEmail,Password:strRegisterPassword,FirstName:strFirstName,LastName:strLastName,CoopID:strCoopRegistrationID},function(result){
+            result = JSON.parse(result);
+            if(result.Error){
+                Swal.fire({
+                    icon:'error',
+                    html:result.Error
+                })
+            } else {
+                $.post('https://simplecoop.swollenhippo.com/useradress.php',{Email:strEmail,Street1:strStreetAddress1,Street:strStreetAddress2,City:strCity,State:strState,ZIP:strZipCode},function(addressResult){
+                    result = JSON.parse(addressResult);
+                    if(addressResult.Error){
+                        Swal.fire({
+                            icon:'error',
+                            html:addressResult.Error
+                        })
+                    } else {
+                        $.post('https://simplecoop.swollenhippo.com/sessions.php',{Email:strEmail,Password:strRegisterPassword},function(sessionResult){
+                            sessionResult = JSON.parse(sessionResult);
+                            if(sessionResult.Error){
+                                Swal.fire({
+                                    icon:'danger',
+                                    html:result.Error
+                                }) 
+                            } else {
+                                sessionStorage.setItem("SessionID",sessionResult.SessionID);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Registration Successful',
+                                    showConfirmButton: false
+                                });
+                                setTimeout(function () {
+                                    Swal.close()
+                                    $('#registerCard').slideUp();
+                                    $('#loginCard').slideUp();
+                                }, 2000);
+                            }
+                        })
+                    }
+                })
+            }
+        })
     }
 })
