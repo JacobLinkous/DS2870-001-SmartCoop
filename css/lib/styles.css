@@ -63,8 +63,46 @@ body {
     color: #fff
 }
 
-@media screen and (max-width: 768px) {
-    h2 {
-        display: none;
-    }
+#registerCard {
+    max-width: 400px;
+    /* Set the maximum width of the card */
+    margin: 0 auto;
+    /* Center the card horizontally */
+    padding: 20px;
+}
+
+/* Apply flexbox layout to form-row */
+.form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* Align form-groups side by side with space in between */
+}
+
+/* Adjust the form-group elements within form-row */
+.form-row .form-group {
+    flex: 1;
+    /* Each form-group takes equal width */
+    margin-right: 15px;
+    /* Add spacing between form-groups */
+}
+
+/* Remove margin for the last form-group element */
+.form-row .form-group:last-child {
+    margin-right: 0;
+}
+
+/* Style labels */
+.form-group label {
+    margin-bottom: 5px;
+    display: block;
+    /* Add any other label styles as needed */
+}
+
+/* Ensure input fields take 100% width */
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    /* Include padding and border in the width */
+    /* Add any other input field styles as needed */
 }
