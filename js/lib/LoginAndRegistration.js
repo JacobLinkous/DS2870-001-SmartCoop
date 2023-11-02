@@ -47,6 +47,10 @@ $('#btnLogin').on('click', function () {
                 }, 2000);
             }
         })
+        $('#registerCard').slideUp();
+        $('#loginCard').slideUp(function(){
+            $('#dashboardCard').slideDown();
+        });
     }
 });
 
