@@ -1,5 +1,5 @@
-function validateEmail(strEmail){
-    if(strEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)){
+function validateEmail(strEmail) {
+    if (strEmail.match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
         return true;
     }
     return false;
@@ -10,11 +10,11 @@ $('#btnLogin').on('click', function () {
     let strPassword = $('#txtPassword').val();
     let blnError = false;
     let strErrorMessage = '';
-    
+
     if (strUsername == '') {
-        blnError = true; 
+        blnError = true;
         strErrorMessage += "<h5>Email can't be blank.</h5>";
-    }else if(!validateEmail(strUsername)){
+    } else if (!validateEmail(strUsername)) {
         blnError = true;
         strErrorMessage += "<h5>Email is invalid.</h5>";
     }
@@ -31,6 +31,27 @@ $('#btnLogin').on('click', function () {
             html: strErrorMessage,
         });
     } else {
+        $.post('https://simplecoop.swollenhippo.com/sessions.php', { Email: strUsername, Password: strPassword }, function (sessionResult) {
+            sessionResult = JSON.parse(sessionResult);
+            if (sessionResult.Error) {
+                Swal.fire({
+                    icon: 'error',
+                    html: sessionResult.Error
+                })
+            } else {
+                sessionStorage.setItem("SessionID", sessionResult.SessionID);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful',
+                    showConfirmButton: false
+                });
+                setTimeout(function () {
+                    Swal.close()
+                    $('#loginCard').slideToggle();
+                    $('#registerCard').slideToggle();
+                }, 2000);
+            }
+        })
         $('#registerCard').slideUp();
         $('#loginCard').slideUp();
     }
@@ -53,9 +74,9 @@ $('#btnRegister').on('click', function () {
     let strErrorMessage = '';
 
     if (strEmail == '') {
-        blnError = true; 
+        blnError = true;
         strErrorMessage += "<h5>Email can't be blank.</h5>";
-    }else if(!validateEmail(strEmail)){
+    } else if (!validateEmail(strEmail)) {
         blnError = true;
         strErrorMessage += "<h5>Email is invalid.</h5>";
     }
@@ -103,31 +124,31 @@ $('#btnRegister').on('click', function () {
             html: strErrorMessage,
         });
     } else {
-        $.post('https://simplecoop.swollenhippo.com/users.php',{Email:strEmail,Password:strRegisterPassword,FirstName:strFirstName,LastName:strLastName,CoopID:strCoopRegistrationID},function(result){
+        $.post('https://simplecoop.swollenhippo.com/users.php', { Email: strEmail, Password: strRegisterPassword, FirstName: strFirstName, LastName: strLastName, CoopID: strCoopRegistrationID }, function (result) {
             result = JSON.parse(result);
-            if(result.Error){
+            if (result.Error) {
                 Swal.fire({
-                    icon:'error',
-                    html:result.Error
+                    icon: 'error',
+                    html: result.Error
                 })
             } else {
-                $.post('https://simplecoop.swollenhippo.com/useraddress.php',{Email:strEmail,Street1:strStreetAddress1,Street2:strStreetAddress2,City:strCity,State:strState,ZIP:strZipCode},function(addressResult){
+                $.post('https://simplecoop.swollenhippo.com/useraddress.php', { Email: strEmail, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (addressResult) {
                     result = JSON.parse(addressResult);
-                    if(addressResult.Error){
+                    if (addressResult.Error) {
                         Swal.fire({
-                            icon:'error',
-                            html:addressResult.Error
+                            icon: 'error',
+                            html: addressResult.Error
                         })
                     } else {
-                        $.post('https://simplecoop.swollenhippo.com/sessions.php',{Email:strEmail,Password:strRegisterPassword},function(sessionResult){
+                        $.post('https://simplecoop.swollenhippo.com/sessions.php', { Email: strEmail, Password: strRegisterPassword }, function (sessionResult) {
                             sessionResult = JSON.parse(sessionResult);
-                            if(sessionResult.Error){
+                            if (sessionResult.Error) {
                                 Swal.fire({
-                                    icon:'danger',
-                                    html:result.Error
-                                }) 
+                                    icon: 'error',
+                                    html: sessionResult.Error
+                                })
                             } else {
-                                sessionStorage.setItem("SessionID",sessionResult.SessionID);
+                                sessionStorage.setItem("SessionID", sessionResult.SessionID);
                                 Swal.fire({
                                     icon: 'success',
                                     title: 'Registration Successful',
