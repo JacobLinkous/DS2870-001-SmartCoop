@@ -42,15 +42,14 @@ $('#btnLogin').on('click', function () {
                 sessionStorage.setItem("SessionID", sessionResult.SessionID);
                 setTimeout(function () {
                     Swal.close()
-                    $('#loginCard').slideToggle();
-                    $('#registerCard').slideToggle();
+                    $('#registerCard').slideUp();
+                    $('#loginCard').slideUp(function(){
+                        $('#dashboardCard').slideDown();
+                    });
                 }, 2000);
             }
         })
-        $('#registerCard').slideUp();
-        $('#loginCard').slideUp(function(){
-            $('#dashboardCard').slideDown();
-        });
+        
     }
 });
 
