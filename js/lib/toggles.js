@@ -9,12 +9,12 @@ $('#btnCancel').on('click', function () {
 });
 
 function closeAll(){
-    $('#homepage').slideUp();
-    $('#lights').slideUp();
-    $('#temperature').slideUp();
-    $('#door').slideUp();
-    $('#foodandwater').slideUp();
-    $('#egg').slideUp();
+    $('#homepage').slideUp(0);
+    $('#lights').slideUp(0);
+    $('#temperature').slideUp(0);
+    $('#door').slideUp(0);
+    $('#foodandwater').slideUp(0);
+    $('#egg').slideUp(0);
 };
 
 $('#homepagebtn').on('click', function () {
