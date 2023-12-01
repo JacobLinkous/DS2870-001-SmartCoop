@@ -106,3 +106,14 @@ body {
     /* Include padding and border in the width */
     /* Add any other input field styles as needed */
 }
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+  .sidebar {
+    /* Sidebar styling */
+  }
+  .main-content {
+    /* Main content styling */
+  }
