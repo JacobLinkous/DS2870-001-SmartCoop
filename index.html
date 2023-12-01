@@ -196,18 +196,24 @@
             </div>
             <div class="row" id="lights" style="display: none;">
                 <div class="col-6 card" id="lightsManual">
-                    <p>Manual</p>
+                    <button type="button" class="btn btn-success" id="manualLightOn">Lights On</button>
+                    <button type="button" class="btn btn-danger" id="manualLightOff">Lights Off</button>
                 </div> 
                 <div class="col-6 card" id="lightsAuto">
-                    <p>Auto</p>
+                    <input type="time" placeholder="On Time" id="LightsOnTime">
+                    <input type="time" placeholder="Off Time" id="LightsOnTime">
+                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
                 </div> 
             </div>
             <div class="row" id="door" style="display: none;">
                 <div class="col-6 card" id="doorManual">
-                    <p>Manual</p>
+                    <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
+                    <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
                 </div> 
                 <div class="col-6 card" id="doorAuto">
-                    <p>Auto</p>
+                    <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
+                    <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
+                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
                 </div> 
             </div>
             <div class="row" id="foodandwater" style="display: none;">
@@ -220,16 +226,22 @@
             </div>
             <div class="row" id="temperature" style="display: none;">
                 <div class="col-6 card" id="temperatureHeatAuto">
-                    <p>Auo</p>
+                    <input type="number" placeholder="Temperature" id="autoHeatOn">
+                    <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
                 </div> 
                 <div class="col-6 card" id="temperatureHeatManual">
-                    <p>Manual</p>
+                    <button type="button" class="btn btn-success" id="manualHeatOn">Heat On</button>
+                    <input type="time" placeholder="Duration" id="heatOnTime">
+                    <button type="button" class="btn btn-danger" id="manualHeatOff">Heat Off</button>
                 </div>
                 <div class="col-6 card" id="temperatureFanAuto">
-                    <p>Auo</p>
+                    <input type="number" placeholder="Temperature" id="autoFanOn">
+                    <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
                 </div> 
                 <div class="col-6 card" id="temperatureFanManual">
-                    <p>Manual</p>
+                    <button type="button" class="btn btn-success" id="manualFanOn">Fan On</button>
+                    <input type="time" placeholder="Duration" id="heatOnTime">
+                    <button type="button" class="btn btn-danger" id="manualFanOff">Fan Off</button>
                 </div>  
             </div>
             <div class="row" id="egg" style="display: none;">
