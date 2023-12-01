@@ -5,6 +5,11 @@ function validateEmail(strEmail) {
     return false;
 };
 
+txtPhoneNumber.addEventListener('input', function (e) {
+    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+  });
+
 $('#btnLogin').on('click', function () {
     let strUsername = $('#txtUsername').val().trim();
     let strPassword = $('#txtPassword').val();
@@ -76,10 +81,45 @@ $('#btnRegister').on('click', function () {
         blnError = true;
         strErrorMessage += "<h5>Email is invalid.</h5>";
     }
-    if (strRegisterPassword == '') {
+   
+    if (strRegisterPassword === '') {
         blnError = true;
         strErrorMessage += "<h5>Password can't be blank.</h5>";
+    } else {
+        let requirements = [];
+    
+        if (strRegisterPassword.trim().length < 8) {
+            requirements.push("Password can't be shorter than 8 characters.");
+        }
+    
+        if (!/[A-Z]/.test(strRegisterPassword)) {
+            requirements.push("Password must contain at least one uppercase letter.");
+        }
+    
+        if (!/[a-z]/.test(strRegisterPassword)) {
+            requirements.push("Password must contain at least one lowercase letter.");
+        }
+    
+        if (!/\d/.test(strRegisterPassword)) {
+            requirements.push("Password must contain at least one number.");
+        }
+    
+        if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(strRegisterPassword)) {
+            requirements.push("Password must contain at least one special character.");
+        }
+    
+        if (requirements.length > 0) {
+            blnError = true;
+            strErrorMessage += "<h5>Password requirements not met:</h5>";
+            strErrorMessage += "<ul>";
+            requirements.forEach(req => {
+                strErrorMessage += `<li>${req}</li>`;
+            });
+            strErrorMessage += "</ul>";
+        }
     }
+    
+
     if (strFirstName == '') {
         blnError = true;
         strErrorMessage += "<h5>First Name can't be blank.</h5>";
