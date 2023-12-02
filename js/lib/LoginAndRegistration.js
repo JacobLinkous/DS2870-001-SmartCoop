@@ -132,10 +132,6 @@ $('#btnRegister').on('click', function () {
         blnError = true;
         strErrorMessage += "<h5>Street Address can't be blank.</h5>";
     }
-    if (strStreetAddress2 == '') {
-        blnError = true;
-        strErrorMessage += "<h5>Street Address can't be blank.</h5>";
-    }
     if (strCity == '') {
         blnError = true;
         strErrorMessage += "<h5>City can't be blank.</h5>";
@@ -170,7 +166,7 @@ $('#btnRegister').on('click', function () {
                 Swal.fire({
                     icon: 'error',
                     html: result.Error
-                })
+                });
             } else {
                 $.post('https://simplecoop.swollenhippo.com/useraddress.php', { Email: strEmail, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (addressResult) {
                     result = JSON.parse(addressResult);
@@ -178,7 +174,7 @@ $('#btnRegister').on('click', function () {
                         Swal.fire({
                             icon: 'error',
                             html: addressResult.Error
-                        })
+                        });
                     } else {
                         $.post('https://simplecoop.swollenhippo.com/sessions.php', { Email: strEmail, Password: strRegisterPassword }, function (sessionResult) {
                             sessionResult = JSON.parse(sessionResult);
@@ -186,24 +182,36 @@ $('#btnRegister').on('click', function () {
                                 Swal.fire({
                                     icon: 'error',
                                     html: sessionResult.Error
-                                })
-                            } else {
-                                sessionStorage.setItem("SessionID", sessionResult.SessionID);
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Registration Successful',
-                                    showConfirmButton: false
                                 });
-                                setTimeout(function () {
-                                    Swal.close()
-                                    $('#registerCard').slideUp();
-                                    $('#loginCard').slideUp();
-                                }, 2000);
-                            }
-                        })
+                            } else {
+                                $.put('https://simplecoop.swollenhippo.com/coop.php', { SessionID: sessionResult.SessionID, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (coopAddressResult) {
+                                    coopAddressResult = JSON.parse(coopAddressResult);
+                                    if (coopAddressResult.Error) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            html: coopAddressResult.Error
+                                        });
+                                    } else {
+                                        sessionStorage.setItem("SessionID", sessionResult.SessionID);
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Registration Successful',
+                                            showConfirmButton: false
+                                        });
+                                        setTimeout(function () {
+                                            Swal.close()
+                                            $('#registerCard').slideUp();
+                                            $('#loginCard').slideUp(function () {
+                                                $('#dashboardCard').slideDown();
+                                            });
+                                        }, 2000);
+                                    }
+                                });
+                            }       
+                        });
                     }
-                })
+                });
             }
-        })
+        });
     }
-})
+});
