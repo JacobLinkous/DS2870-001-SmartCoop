@@ -112,3 +112,9 @@ body {
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
