@@ -132,6 +132,10 @@ $('#btnRegister').on('click', function () {
         blnError = true;
         strErrorMessage += "<h5>Street Address can't be blank.</h5>";
     }
+    if (strStreetAddress2 == '') {
+        blnError = true;
+        strErrorMessage += "<h5>Street Address can't be blank.</h5>";
+    }
     if (strCity == '') {
         blnError = true;
         strErrorMessage += "<h5>City can't be blank.</h5>";
