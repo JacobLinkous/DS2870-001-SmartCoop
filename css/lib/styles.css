@@ -116,5 +116,13 @@ body {
 .row {
     display: flex;
     flex-direction: row;
-    gap: 20px;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: space-between;
 }
