@@ -307,20 +307,38 @@
                 </div>
             </div>
             <div class="row" id="lights" style="display: none;">
-                <div class="col-6 card" id="lightsAuto">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                            checked>
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox
-                            input</label>
+                <div class="col-md-6 mb-4">
+                    <div class="card text-white bg-info">
+                        <div class="card-body">
+                            <h5 class="card-title">Manual Lights Control</h5>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="lightsAutoSwitch"
+                                    checked>
+                                <label class="form-check-label" for="lightsAutoSwitch">Manual Lights
+                                    Control</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-6 card" id="lightsAuto">
-                    <input type="time" placeholder="On Time" id="LightsOnTime">
-                    <input type="time" placeholder="Off Time" id="LightsOnTime">
-                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
+                <div class="col-md-6 mb-4">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-title">Custom Lights Schedule</h5>
+                            <div class="mb-3">
+                                <label for="lightsOnTime" class="form-label">Turn On Time</label>
+                                <input type="time" class="form-control" id="lightsOnTime">
+                            </div>
+                            <div class="mb-3">
+                                <label for="lightsOffTime" class="form-label">Turn Off Time</label>
+                                <input type="time" class="form-control" id="lightsOffTime">
+                            </div>
+                            <button type="button" class="btn btn-light" id="lightSubmit">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+
             <div class="row" id="door" style="display: none;">
                 <div class="col-6 card" id="doorManual">
                     <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
