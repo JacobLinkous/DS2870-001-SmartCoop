@@ -110,19 +110,10 @@ body {
 
 .dashboard {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 2fr 3fr;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    gap: 40px;
-    justify-content: space-between;
-}
-
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    justify-content: space-between;
+    position: relative;
+    gap: 10px;
 }
