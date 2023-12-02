@@ -49,6 +49,7 @@ $('#btnLogin').on('click', function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp(function () {
+                        checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });
                 }, 2000);
@@ -169,7 +170,7 @@ $('#btnRegister').on('click', function () {
                 });
             } else {
                 $.post('https://simplecoop.swollenhippo.com/useraddress.php', { Email: strEmail, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (addressResult) {
-                    result = JSON.parse(addressResult);
+                    addressResult = JSON.parse(addressResult);
                     if (addressResult.Error) {
                         Swal.fire({
                             icon: 'error',
@@ -202,6 +203,8 @@ $('#btnRegister').on('click', function () {
                                                 $('#dashboardCard').slideDown();
                                             });
                                         }, 2000);
+                                        createAllSettings();
+                                        checkStatusHomePage();
                                     }
                                 });
                             }       
