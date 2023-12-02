@@ -184,14 +184,11 @@ $('#btnRegister').on('click', function () {
                                     html: sessionResult.Error
                                 });
                             } else {
-                                $.put('https://simplecoop.swollenhippo.com/coop.php', { SessionID: sessionResult.SessionID, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (coopAddressResult) {
-                                    coopAddressResult = JSON.parse(coopAddressResult);
-                                    if (coopAddressResult.Error) {
-                                        Swal.fire({
-                                            icon: 'error',
-                                            html: coopAddressResult.Error
-                                        });
-                                    } else {
+                                $.ajax({
+                                    url: 'https://simplecoop.swollenhippo.com/coop.php',
+                                    type: 'PUT',
+                                    data: "SessionID="+sessionResult.SessionID+"&Street1="+strStreetAddress1+"&Street2="+strStreetAddress2+"&City="+strCity+"&State="+strState+"&ZIP="+strZipCode+"",
+                                    success: function(data) {
                                         sessionStorage.setItem("SessionID", sessionResult.SessionID);
                                         Swal.fire({
                                             icon: 'success',
