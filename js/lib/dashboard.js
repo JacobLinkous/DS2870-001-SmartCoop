@@ -5,6 +5,71 @@ $.get('https://simplecoop.swollenhippo.com/coop.php?SessionID=5e88dbee-4e00-430d
 });
 */
 
+function getTime(){
+    let date = new Date();
+    return ((date.getHours()*60) + date.getMinutes());
+}
+
+function test2(){
+    let turnOnLights = $('#LightsOnTime').val();
+    turnOnLights = (turnOnLights.split(':')[0]*60) + (turnOnLights.split(':')[1]*1);
+    let turnOffLights = $('#LightsOffTime').val();
+    turnOffLights = (turnOffLights.split(':')[0]*60) + (turnOffLights.split(':')[1]*1);
+    setInterval(function (){
+        let turnOnLights = $('#LightsOnTime').val();
+        turnOnLights = (turnOnLights.split(':')[0]*60) + (turnOnLights.split(':')[1]*1);
+        let turnOffLights = $('#LightsOffTime').val();
+        turnOffLights = (turnOffLights.split(':')[0]*60) + (turnOffLights.split(':')[1]*1);
+
+    
+    
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
+                if(lightsReuslt.Value == 'On'){
+
+                } else if(lightsReuslt.Value == 'Off'){
+
+                } else {
+                    turnOnLights = lightsReuslt.Value.split('|')[1];
+                    
+                    turnOffLights = lightsReuslt.Value.split('|')[2];
+                    sessionStorage.setItem("LightsOn", turnOnLights);
+                    sessionStorage.setItem("LightsOff", turnOffLights);
+                    if(turnOnLights >= getTime() && getTime() <= turnOffLights ){
+                        console.log('lights are off')
+                    }else{
+                        console.log('lights are on')
+                    }
+                }
+                 $("#lightsLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
+            });
+            
+        }, 3000);
+    
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Lights&value=Auto|" + turnOnLights + "|" + turnOffLights,
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
+                if(lightsReuslt.Value == 'On'){
+
+                } else if(lightsReuslt.Value == 'Off'){
+
+                } else {
+                    turnOnLights == lightsReuslt.Value.split('|')[1];
+                    turnOffLights == lightsReuslt.Value.split('|')[2];
+                    sessionStorage.setItem("LightsOn", turnOnLights);
+                    sessionStorage.setItem("LightsOff", turnOffLights);
+                    console.log(sessionStorage.getItem("LightsOn"))
+                    console.log(sessionStorage.getItem("LightsOff"))
+                    console.log(getTime())
+                }
+                 $("#lightsLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
+            });
+        }
+    });
+}
+
 
 function checkStatusHomePage(){
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
@@ -71,6 +136,7 @@ $('#manualDoorOpen').on('click', function () {
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
                 $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
             });
+            automaticDoor = false;
         }
     });
 });
@@ -84,6 +150,7 @@ $('#manualDoorClose').on('click', function () {
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
                 $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
             });
+            automaticDoor = false;
         }
     });
 });
@@ -124,15 +191,23 @@ $('#manualHeatOn').on('click', function () {
     });
 });
 
-$('#flexSwitchCheckChecked').on('click', function(){
+$('#lightSubmit').on('click', function () {
+    autoLights()
+});
+
+$('#DoorSubmit').on('click', function () {
+    autoDoor()
+});
+
+$('#flexSwitchCheckChecked').on('change', function(){
     console.log($('#flexSwitchCheckChecked').value)
-    if($('#flexSwitchCheckChecked').checked == true){
+    if($('#flexSwitchCheckChecked').is(':checked')){
         $.ajax({
             url: 'https://simplecoop.swollenhippo.com/settings.php',
             type: 'PUT',
             data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Lights&value=On",
         });
-    }else if($('#flexSwitchCheckChecked').checked == false){
+    }else {
         $.ajax({
             url: 'https://simplecoop.swollenhippo.com/settings.php',
             type: 'PUT',
@@ -140,5 +215,3 @@ $('#flexSwitchCheckChecked').on('click', function(){
         });
     }
 });
-
-

@@ -52,7 +52,7 @@ $('#btnLogin').on('click', function () {
                         checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });
-                }, 2000);
+                }, 500);
             }
         })
 
@@ -119,7 +119,6 @@ $('#btnRegister').on('click', function () {
             strErrorMessage += "</ul>";
         }
     }
-
 
     if (strFirstName == '') {
         blnError = true;
