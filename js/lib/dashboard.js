@@ -389,7 +389,7 @@ function foodUse(){
                     foodAlarm();
                 }
                 tempFood = foodResult.Value - (Math.floor(Math.random() * 5) + 1);
-                $("#foodStatus").html("<b>Food|"+ tempFood +"%</b>");
+                $("#foodStatus").html("<b>Percentage: "+ tempFood +"%</b>");
                 $("#homepageFoodStatus").html("<b>Food|"+ tempFood +"%</b>");
                 $.ajax({
                     url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -412,7 +412,7 @@ function waterUse(){
                     waterAlarm();
                 }
                 tempWater = waterResult.Value - (Math.floor(Math.random() * 5) + 1);
-                $("#waterStatus").html("<b>Water|"+ tempWater +"%</b>");
+                $("#waterStatus").html("<b>Percentage: "+ tempWater +"%</b>");
                 $("#homepageWaterStatus").html("<b>Water|"+ tempWater +"%</b>");
                 $.ajax({
                     url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -616,7 +616,7 @@ $('#foodReset').on('click', function () {
         data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Food&value=100",
         success: function(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodReuslt){
-                $("#foodStatus").html("<b>Food|"+ foodReuslt.Value +"%</b>");
+                $("#foodStatus").html("<b>Percentage: "+ foodReuslt.Value +"%</b>");
             });
             foodUse()
         }
@@ -630,7 +630,7 @@ $('#waterReset').on('click', function () {
         data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Water&value=100",
         success: function(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
-                $("#waterStatus").html("<b>Water|"+ waterReuslt.Value +"%</b>");
+                $("#waterStatus").html("<b>Percentage: "+ waterReuslt.Value +"%</b>");
             });
             waterUse()
         }
