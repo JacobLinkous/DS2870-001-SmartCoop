@@ -663,7 +663,7 @@ $('#eggCountSubmit').on('click', function(){
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggResult){
         eggCount = (eggResult.Value*1) + (eggCount*1);
         $('#eggCountInput').val(0);
-        $("#eggCountTotal").html("<b>Eggs|"+ eggCount +"</b>");
+        $("#eggCountTotal").html("<b>"+ eggCount +"</b>");
         $("#homepageEggCount").html("<b>Eggs|"+ eggCount +"</b>");
         $.ajax({
             url: 'https://simplecoop.swollenhippo.com/settings.php',

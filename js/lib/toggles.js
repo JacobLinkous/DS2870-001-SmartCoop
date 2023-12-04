@@ -17,13 +17,13 @@ function closeAll(){
     $('#egg').slideUp(0);
 };
 
-$('#homepagebtn').on('click', function () {
+function homepage(){
     closeAll();
     checkStatusHomePage();
     $('#homepage').slideDown();
-});
+};
 
-$('#lightsbtn').on('click', function () {
+function light(){
     closeAll();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
         if(lightsReuslt.Value == 'On'){
@@ -37,9 +37,9 @@ $('#lightsbtn').on('click', function () {
         }
     }); 
     $('#lights').slideDown();
-});
+};
 
-$('#tempbtn').on('click', function () {
+function temperature(){
     closeAll();
     getWeather();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
@@ -63,9 +63,9 @@ $('#tempbtn').on('click', function () {
         }
     });
     $('#temperature').slideDown();
-});
+};
 
-$('#doorbtn').on('click', function () {
+function door(){
     closeAll();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
         if(doorReuslt.Value == 'Open'){
@@ -79,9 +79,9 @@ $('#doorbtn').on('click', function () {
         }    
     });
     $('#door').slideDown();
-});
+};
 
-$('#foodandwaterbtn').on('click', function () {
+function foodandwater(){
     closeAll();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
         $("#waterStatus").html("<b>Percentage: "+ waterReuslt.Value +"%</b>");
@@ -90,12 +90,66 @@ $('#foodandwaterbtn').on('click', function () {
         $("#foodStatus").html("<b>Percentage: "+ foodReuslt.Value +"%</b>");
     });
     $('#foodandwater').slideDown();
+};
+
+function egg(){
+    closeAll();
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggReuslt){
+        $("#eggCountTotal").html("<b>"+ eggReuslt.Value +"</b>")
+    });
+    $('#egg').slideDown();
+
+}
+
+$('#homepagebtn').on('click', function () {
+    homepage();
+});
+
+$('#lightsbtn').on('click', function () {
+    light();
+});
+
+$('#tempbtn').on('click', function () {
+    temperature();
+});
+
+$('#doorbtn').on('click', function () {
+    door();
+});
+
+$('#foodandwaterbtn').on('click', function () {
+    foodandwater();
 });
 
 $('#eggbtn').on('click', function () {
-    closeAll();
-    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggReuslt){
-        $("#eggCountTotal").html("<b>Eggs|"+ eggReuslt.Value +"</b>")
-    });
-    $('#egg').slideDown();
+    egg();
 });
+
+$('#homepageLightsStatusCard').on('click', function () {
+    light();
+});
+
+$('#homepageHeatStatusCard').on('click', function () {
+    temperature();
+});
+
+$('#homepageFanStatusCard').on('click', function () {
+    temperature();
+});
+
+$('#homepageDoorStatusCard').on('click', function () {
+    door();
+});
+
+$('#homepageFoodStatusCard').on('click', function () {
+    foodandwater();
+});
+
+$('#homepageWaterStatusCard').on('click', function () {
+    foodandwater();
+});
+
+$('#homepageEggStatusCard').on('click', function () {
+    egg();
+});
+
