@@ -113,7 +113,15 @@ body {
     grid-template-columns: 2fr 3fr;
 }
 
-.row {
-    position: relative;
-    gap: 10px;
+#lightswitch {
+    transform: scale(1.25); 
+    align-content: center;
+    justify-content: center;
 }
+
+@media (min-width: 768px) {
+    .custom-margin-right {
+      margin-right: 200px; /* Adjust the margin as needed */
+    }
+  }
+  

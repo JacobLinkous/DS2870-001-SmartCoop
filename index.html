@@ -14,7 +14,7 @@
 </head>
 
 <body class="text-white">
-    <div class="col-8 offset-2 card mt-5 mb-5 flex" id="loginCard">
+    <div class="col-8 col-md-6 offset-3 card mt-5 mb-5 flex" id="loginCard">
         <div class="card-header text-center">
             <h3 id="lblLogin" aria-label="Login Header">
                 <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
@@ -181,226 +181,237 @@
             </form>
         </div>
     </div>
-    <div class="col-8 offset-2 card mt-5 mb-5" id="dashboardCard" style="display: none;">
-        <div class="card-header text-center">
-            <h3 id="lblDashboard" aria-label="Dashboard Header">
-                <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
-                    Welcome to your Coop Dashboard!
-                </span>
-            </h3>
-        </div>
-        <div class="card-body dashboard">
-            <div class="sidebar col-2" id="dashSideBar">
-                <button type="button" class="btn btn-secondary mb-1" id="homepagebtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-house" viewBox="0 0 16 16">
-                        <path
-                            d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z">
-                        </path>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary mb-1" id="lightsbtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-lightbulb" viewBox="0 0 16 16">
-                        <path
-                            d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
-                        </path>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary mb-1" id="doorbtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-door-open" viewBox="0 0 16 16">
-                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
-                        <path
-                            d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
-                        </path>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary mb-1" id="foodandwaterbtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-heart-pulse" viewBox="0 0 16 16">
-                        <path
-                            d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z">
-                        </path>
-                        <path
-                            d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
-                        </path>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary mb-1" id="tempbtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
-                        class="bi bi-thermometer-half" viewBox="0 0 16 16">
-                        <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415"></path>
-                        <path
-                            d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1">
-                        </path>
-                    </svg>
-                </button>
-                <button type="button" class="btn btn-secondary" id="eggbtn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-egg"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
-                        </path>
-                    </svg>
-                </button>
-            </div>
-            <div class="row" id="homepage">
-                <div class="col-6 card" id="homepageLights">
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-lightbulb" viewBox="0 0 16 16">
-                            <path
-                                d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
-                            </path>
-                        </svg>Lights</p>
-                        <p id="homepageLightsStatus">null</p>
+    <div class="container mt-5 align-items-center justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-8 card mt-5 mb-5 flex" id="dashboardCard" style="display: none;">
+                <div class="card-header text-center">
+                    <h3 id="lblDashboard" aria-label="Dashboard Header">
+                        <span style="font-family: 'Shadows Into Light', cursive; font-size: 3rem;">
+                            Welcome to your Coop Dashboard!
+                        </span>
+                    </h3>
                 </div>
-                <div class="col-6 card" id="homepageHeat">
-                    <p> <label type="label" class="form-label">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-thermometer-sun" viewBox="0 0 16 16">
-                                <path d="M5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585A1.5 1.5 0 0 1 5 12.5">
+                <div class="card-body dashboard">
+                    <div class="sidebar col-2" id="dashSideBar">
+                        <button type="button" class="btn btn-secondary mb-1" id="homepagebtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-house" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-secondary mb-1" id="lightsbtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-lightbulb" viewBox="0 0 16 16">
+                                <path
+                                    d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-secondary mb-1" id="doorbtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-door-open" viewBox="0 0 16 16">
+                                <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
+                                <path
+                                    d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-secondary mb-1" id="foodandwaterbtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-heart-pulse" viewBox="0 0 16 16">
+                                <path
+                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z">
                                 </path>
                                 <path
-                                    d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1m5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5m4.243 1.757a.5.5 0 0 1 0 .707l-.707.708a.5.5 0 1 1-.708-.708l.708-.707a.5.5 0 0 1 .707 0M8 5.5a.5.5 0 0 1 .5-.5 3 3 0 1 1 0 6 .5.5 0 0 1 0-1 2 2 0 0 0 0-4 .5.5 0 0 1-.5-.5M12.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 1 1 0 1h-1a.5.5 0 0 1-.5-.5m-1.172 2.828a.5.5 0 0 1 .708 0l.707.708a.5.5 0 0 1-.707.707l-.708-.707a.5.5 0 0 1 0-.708M8.5 12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5">
+                                    d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
                                 </path>
-                            </svg>Heat</p>
-                            <p id="homepageHeatStatus">null</p>
-                </div>
-                <div class="col-6 card" id="homepageFan">
-                    <p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-wind" viewBox="0 0 16 16">
-                            <path
-                                d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5">
-                            </path>
-                        </svg>Fan</p>
-                        <p id="homepageFanStatus">null</p>
-                </div>
-                <div class="col-6 card" id="homepageDoor">
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-door-open" viewBox="0 0 16 16">
-                            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
-                            <path
-                                d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
-                            </path>
-                        </svg>Door Status:</p>
-                        <p id="homepageDoorStatus">null</p>
-                </div>
-                <div class="col-6 card" id="homepageFoodWater">
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-heart-pulse" viewBox="0 0 16 16">
-                            <path
-                                d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z">
-                            </path>
-                            <path
-                                d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
-                            </path>
-                        </svg>Food/Water</p>
-                        <p id="homepageFoodStatus">null</p>
-                        <p id="homepageWaterStatus">null</p>
-                </div>
-                <div class="col-6 card" id="homepageEggs">
-                    <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-egg" viewBox="0 0 16 16">
-                            <path
-                                d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
-                            </path>
-                        </svg>Eggs</p>
-                        <p id="homepageEggCount">null</p>
-                </div>
-            </div>
-            <div class="row" id="lights" style="display: none;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked="true">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-                    <p id="lightsLightsStatus">null</p>
-                  </div>
-                <div class="col-6 card" id="lightsAuto">
-                    <input type="time" placeholder="On Time" id="LightsOnTime">
-                    <input type="time" placeholder="Off Time" id="LightsOffTime">
-                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-secondary mb-1" id="tempbtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-thermometer-half" viewBox="0 0 16 16">
+                                <path
+                                    d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415">
+                                </path>
+                                <path
+                                    d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1">
+                                </path>
+                            </svg>
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="eggbtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-egg" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="row" id="homepage">
+                        <div class="col-6 card" id="homepageLights">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-lightbulb" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
+                                    </path>
+                                </svg>Lights</p>
+                        </div>
+                        <div class="col-6 card" id="homepageHeat">
+                            <p> <label type="label" class="form-label">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-thermometer-sun" viewBox="0 0 16 16">
+                                        <path
+                                            d="M5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585A1.5 1.5 0 0 1 5 12.5">
+                                        </path>
+                                        <path
+                                            d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1m5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5m4.243 1.757a.5.5 0 0 1 0 .707l-.707.708a.5.5 0 1 1-.708-.708l.708-.707a.5.5 0 0 1 .707 0M8 5.5a.5.5 0 0 1 .5-.5 3 3 0 1 1 0 6 .5.5 0 0 1 0-1 2 2 0 0 0 0-4 .5.5 0 0 1-.5-.5M12.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 1 1 0 1h-1a.5.5 0 0 1-.5-.5m-1.172 2.828a.5.5 0 0 1 .708 0l.707.708a.5.5 0 0 1-.707.707l-.708-.707a.5.5 0 0 1 0-.708M8.5 12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5">
+                                        </path>
+                                    </svg>Heat
+                            </p>
+                        </div>
+                        <div class="col-6 card" id="homepageFan">
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-wind" viewBox="0 0 16 16">
+                                    <path
+                                        d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5">
+                                    </path>
+                                </svg>
+                                Fan
+                            </p>
+                        </div>
+                        <div class="col-6 card" id="homepageDoor">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-door-open" viewBox="0 0 16 16">
+                                    <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
+                                    <path
+                                        d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
+                                    </path>
+                                </svg>Door</p>
+                        </div>
+                        <div class="col-6 card" id="homepageFoodWater">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-heart-pulse" viewBox="0 0 16 16">
+                                    <path
+                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053.918 3.995.78 5.323 1.508 7H.43c-2.128-5.697 4.165-8.83 7.394-5.857.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17c3.23-2.974 9.522.159 7.394 5.856h-1.078c.728-1.677.59-3.005.108-3.947C13.486.878 10.4.28 8.717 2.01zM2.212 10h1.315C4.593 11.183 6.05 12.458 8 13.795c1.949-1.337 3.407-2.612 4.473-3.795h1.315c-1.265 1.566-3.14 3.25-5.788 5-2.648-1.75-4.523-3.434-5.788-5Z">
+                                    </path>
+                                    <path
+                                        d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
+                                    </path>
+                                </svg>Food/Water</p>
+                        </div>
+                        <div class="col-6 card" id="homepageEggs">
+                            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-egg" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
+                                    </path>
+                                </svg>Eggs</p>
+                        </div>
+                    </div>
+                    <div class="row align-items-center" id="lights" style="display: none;">
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-success w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Manual Lights Control</h5>
+                                    <div class="mb-3 d-flex align-items-center justify-content-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
+                                            fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="form-check form-switch" id="lightswitch">
+
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="lightsAutoSwitchControl" checked><br>
+                                        <label class="form-check-label mt-2 justify-content-center"
+                                            for="lightsAutoSwitchControl">OFF / ON</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-info w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Custom Lights Schedule</h5>
+                                    <div class="mb-3 col-8 text-center">
+                                        <label for="lightsOnTime" class="form-label mb-0">Turn On Time</label>
+                                        <input type="time" class="form-control" id="lightsOnTime">
+                                    </div>
+                                    <div class="mb-3 col-8 text-center">
+                                        <label for="lightsOffTime" class="form-label mb-0">Turn Off Time</label>
+                                        <input type="time" class="form-control" id="lightsOffTime">
+                                    </div>
+                                    <button type="button" class="btn btn-light">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row" id="door" style="display: none;">
+                        <div class="col-6 card" id="doorManual">
+                            <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
+                            <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
+                        </div>
+                        <div class="col-6 card" id="doorAuto">
+                            <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
+                            <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
+                            <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                    <div class="row" id="foodandwater" style="display: none;">
+                        <div class="col-6 card" id="foodandwaterFoodStatus">
+                            <p>Food</p>
+                        </div>
+                        <div class="col-6 card" id="foodandwaterWaterStatus">
+                            <p>Water</p>
+                        </div>
+                    </div>
+                    <div class="row" id="temperature" style="display: none;">
+                        <div class="col-6 card" id="temperatureHeatAuto">
+                            <input type="number" placeholder="Temperature" id="autoHeatOn">
+                            <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
+                        </div>
+                        <div class="col-6 card" id="temperatureHeatManual">
+                            <button type="button" class="btn btn-success" id="manualHeatOn">Heat On</button>
+                            <input type="time" placeholder="Duration" id="heatOnTime">
+                            <button type="button" class="btn btn-danger" id="manualHeatOff">Heat Off</button>
+                        </div>
+                        <div class="col-6 card" id="temperatureFanAuto">
+                            <input type="number" placeholder="Temperature" id="autoFanOn">
+                            <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
+                        </div>
+                        <div class="col-6 card" id="temperatureFanManual">
+                            <button type="button" class="btn btn-success" id="manualFanOn">Fan On</button>
+                            <input type="time" placeholder="Duration" id="heatOnTime">
+                            <button type="button" class="btn btn-danger" id="manualFanOff">Fan Off</button>
+                        </div>
+                    </div>
+                    <div class="row" id="egg" style="display: none;">
+                        <div class="col-6 card" id="eggCount">
+                            <p>egg</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-
-            <div class="row" id="door" style="display: none;">
-                <div class="col-6 card" id="doorManual">
-                    <p id="doorDoorStatus">null</p>
-                    <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
-                    <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
-                </div>
-                <div class="col-6 card" id="doorAuto">
-                    <input type="time" placeholder="Door Open" id="DoorOpenTime">
-                    <input type="time" placeholder="Door Close" id="DoorCloseTime">
-                    <button type="button" id="DoorSubmit" class="btn btn-success">Submit</button>
-                </div>
-            </div>
-            <div class="row" id="foodandwater" style="display: none;">
-                <div class="col-6 card" id="foodInfo">
-                    <p>Food</p>
-                    <label id="foodStatus">null</label>
-                    <button id="foodReset" type="button" class="btn btn-warning">Reset</button>
-                    <input type="number" placeholder="Warning Percentage" id="foodAlarm">
-                    <button id="foodAlarmSubmit" type="button" class="btn btn-success">Submit</button>
-                    
-                </div>
-                <div class="col-6 card" id="waterInfo">
-                    <p>Water</p>
-                    <label id="waterStatus">null</label>
-                    <button id="waterReset" type="button" class="btn btn-warning">Reset</button>
-                    <input type="number" placeholder="Warning Percentage" id="waterAlarm">
-                    <button id="waterAlarmSubmit" type="button" class="btn btn-success">Submit</button>
-                    
-                </div>
-            </div>
-            <div class="row" id="temperature" style="display: none;">
-                <div class="col-6 card" id="temperatureHeatAuto">
-                    <input type="number" placeholder="Temperature" id="autoHeatOn">
-                    <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
-                    <input type="number" placeholder="Timer" id="heatOnTimer">
-                    <button type="button" id="heatOnTimerSubmit" class="btn btn-success">Submit</button>
-                </div>
-                <div class="col-6 card" id="temperatureHeatManual">
-                    <p id="temperatureHeatStatus">null</p>
-                    <button type="button" class="btn btn-success" id="manualHeatOn">Heat On</button>
-                    <button type="button" class="btn btn-danger" id="manualHeatOff">Heat Off</button>
-                </div>
-                <div class="col-6 card" id="temperatureFanAuto">
-                    <input type="number" placeholder="Temperature" id="autoFanOn">
-                    <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
-                    <input type="number" placeholder="Timer" id="fanOnTimer">
-                    <button type="button" id="fanOnTimerSubmit" class="btn btn-success">Submit</button>
-                </div>
-                <div class="col-6 card" id="temperatureFanManual">
-                    <p id="temperatureFanStatus">null</p>
-                    <button type="button" class="btn btn-success" id="manualFanOn">Fan On</button>
-                    <button type="button" class="btn btn-danger" id="manualFanOff">Fan Off</button>
-                </div>
-                <div class="col-6 card" id="temperatureCurrent">
-                    <p id="temperatureCurrentStatus">null</p>
-                </div>
-            </div>
-            <div class="row" id="egg" style="display: none;">
-                <div class="col-6 card" id="eggCount">
-                    <p>egg</p>
-                    <input type="number" placeholder="Egg Count" id="eggCountInput">
-                    <button type="button" id="eggCountSubmit" class="btn btn-success">Submit</button>
-                    <p id="eggCountTotal">null</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/lib/dashboard.js"></script>
-    <script src="js/lib/toggles.js"></script>
-    <script src="js/lib/LoginAndRegistration.js"></script>
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="js/lib/LoginAndRegistration.js"></script>
+            <script src="js/lib/toggles.js"></script>
 </body>
 
 </html>
