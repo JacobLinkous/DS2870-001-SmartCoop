@@ -79,8 +79,8 @@ function getWeather(){
         temperature = (Math.trunc((temperature-273.15)*(9/5)+32));
         sessionStorage.setItem("currentHumidity", humidity);
         sessionStorage.setItem("currentTemp", temperature);
-        $('#temperatureCurrentHumidity').html("<b>"+humidity+"%</b>");
-        $('#temperatureCurrentStatus').html("<b>"+temperature+"°F</b>");
+        $('#temperatureCurrentHumidity').html("<b>Outside Humidity: "+humidity+"%</b>");
+        $('#temperatureCurrentStatus').html("<b>Outside Temperature: "+temperature+"°F</b>");
         return;
     })
 }
