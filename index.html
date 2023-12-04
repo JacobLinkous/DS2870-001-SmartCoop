@@ -426,21 +426,6 @@
                         </div>
                     </div>
                     <div class="row" id="temperature" style="display: none;">
-                        <div class="col-6 card" id="temperatureHeatAuto">
-                            <input type="number" placeholder="Temperature" id="autoHeatOn">
-                            <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
-                            <input type="number" placeholder="Timer" id="heatOnTimer">
-                            <button type="button" id="heatOnTimerSubmit" class="btn btn-success">Submit</button>
-                        </div>
-                        <div class="col-6 card" id="temperatureFanAuto">
-                            <input type="number" placeholder="Temperature" id="autoFanOn">
-                            <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
-                            <input type="number" placeholder="Timer" id="fanOnTimer">
-                            <button type="button" id="fanOnTimerSubmit" class="btn btn-success">Submit</button>
-                        </div>
-                        <div class="col-6 card" id="temperatureCurrent">
-                            <p id="temperatureCurrentStatus">null</p>
-                        </div>
                         <!--manual heat control-->
                         <div class="col-12 col-md-6 mb-md-0 mb-3">
                             <div class="card text-white bg-success w-100">
@@ -488,7 +473,41 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!--auto heat controls-->
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-info w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Custom Heat Settings</h5>
+                                    <div class="mb-3 col-8 text-center">
+                                        <input type="number" placeholder="Temperature" id="autoHeatOn" class="col-10 mb-2">
+                                        <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
+                                    </div>
+                                    <div class="mb-3 col-8 text-center">
+                                        <input type="number" placeholder="Timer" id="heatOnTimer" class="col-10 mb-2">
+                                        <button type="button" id="heatOnTimerSubmit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--auto fan controls-->
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-info w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Custom Fan Settings</h5>
+                                    <div class="mb-3 col-8 text-center">
+                                        <input type="number" placeholder="Temperature" id="autoFanOn" class="col-10 mb-2">
+                                        <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
+                                    </div>
+                                    <div class="mb-3 col-8 text-center">
+                                        <input type="number" placeholder="Timer" id="fanOnTimer" class="col-10 mb-2">
+                                        <button type="button" id="fanOnTimerSubmit" class="btn btn-success">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 card" id="temperatureCurrent">
+                            <p id="temperatureCurrentStatus">null</p>
+                        </div>
                     </div>
                     <div class="row" id="egg" style="display: none;">
                         <div class="col-6 card" id="eggCount">
