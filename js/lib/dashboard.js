@@ -4,6 +4,49 @@ $.get('https://simplecoop.swollenhippo.com/coop.php?SessionID=5e88dbee-4e00-430d
         console.log(result.ZIP);
     });
 */
+
+function checkStatusHomePage(){
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
+        if(lightsReuslt.Value == 'On'){
+            $("#homepageLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
+        } else if(lightsReuslt.Value == 'Off'){
+            $("#homepageLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
+        } else {
+            $("#homepageLightsStatus").html("<b>Auto | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+        }
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
+        $("#homepageFanStatus").html("<b>"+fanReuslt.Value+"</b>");
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
+        $("#homepageHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
+        if(doorReuslt.Value == 'Open'){
+            $("#homepageDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+        } else if(doorReuslt.Value == 'Close'){
+            $("#homepageDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+        } else {
+            $("#homepageDoorStatus").html("<b>Auto | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+        }    
+    });
+}
+
+function createAllSettings(){
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights", value:"Off"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan", value:"Off"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat", value:"Off"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door", value:"Close"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+}
+
 function getWeather(){
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=38501,us&appid=f9cd6c6a1f0237008e9fd5c6f964fbd4`;
 
@@ -111,6 +154,8 @@ function autoHeat(){
                 clearInterval(heatChecker);
             } else if(heatReuslt.Value == 'Off'){
                 clearInterval(heatChecker);
+            } else if((heatReuslt.Value.split('|')[0]) == 'Timer On'){
+                clearInterval(heatChecker);
             } else {
                 if(sessionStorage.getItem('currentTemp') <= (heatReuslt.Value.split('|')[1]*1)){
                     $("#temperatureHeatStatus").html("<b>"+ (heatReuslt.Value.split('|')[0]) + " On | Heat:"+ (heatReuslt.Value.split('|')[1]) +"</b>");
@@ -146,13 +191,15 @@ function autoFan(){
                 clearInterval(fanChecker);
             } else if(fanReuslt.Value == 'Off'){
                 clearInterval(fanChecker);
+            } else if((fanReuslt.Value.split('|')[0]) == 'Timer On'){
+                clearInterval(fanChecker);
             } else {
                 if(sessionStorage.getItem('currentTemp') >= (fanReuslt.Value.split('|')[1]*1)){
-                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
-                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 }else{
-                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
-                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 }
             }      
         });
@@ -166,7 +213,7 @@ function autoFan(){
             data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=Auto|" + ($('#autoFanOn').val()*1),
             success: function(){
                 $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
-                    $("#temperatureFanStatus").html("<b>Auto| Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>Auto| Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 })
                 heatOff();
             }
@@ -174,45 +221,86 @@ function autoFan(){
     }
 }
 
-function checkStatusHomePage(){
-    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
-        if(lightsReuslt.Value == 'On'){
-            $("#homepageLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
-        } else if(lightsReuslt.Value == 'Off'){
-            $("#homepageLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
-        } else {
-            $("#homepageLightsStatus").html("<b>Auto | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+function heatOn(){
+    let heatOnTime = $('#heatOnTimer').val();
+    $("#temperatureHeatStatus").html("<b>Timer On| Time Left:"+ heatOnTime +" Mins</b>");
+    $("#homepageHeatStatus").html("<b>Timer On| Time Left:"+ heatOnTime +" Mins</b>");
+    let heatOnTimer = setInterval(function(){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatResult){
+            console.log(heatResult.Value)
+            if(heatResult.Value == 'On'){
+                clearInterval(heatOnTimer);
+                console.log('on')
+            } else if(heatResult.Value == 'Off'){
+                clearInterval(heatOnTimer);
+                console.log('off')
+            } else if((heatResult.Value.split('|')[0]) == 'Auto'){
+                clearInterval(heatOnTimer); 
+                console.log('auto')
+            } else {
+                console.log('timer')
+                if(heatOnTime == 0){
+                    clearInterval(heatOnTimer);
+                    heatOff();
+                } else {
+                heatOnTime--;
+                    $("#temperatureHeatStatus").html("<b>Timer On| Time Left:"+ heatOnTime +" Mins</b>");
+                    $("#homepageHeatStatus").html("<b>Timer On| Time Left:"+ heatOnTime +" Mins</b>");
+                }
+            }
+        });
+   }, 5000);
+
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Heat&value=Timer On|" + heatOnTime,
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatResult){
+                $("#temperatureHeatStatus").html("<b>Timer On| Time Left:"+ (heatResult.Value.split('|')[1]) +" Mins</b>");
+                $("#homepageHeatStatus").html("<b>Timer On| Time Left:"+ (heatResult.Value.split('|')[1]) +" Mins</b>");
+            })
+            fanOff();
         }
-    });
-    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
-        $("#homepageFanStatus").html("<b>"+fanReuslt.Value+"</b>");
-    });
-    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
-        $("#homepageHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
-    });
-    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-        if(doorReuslt.Value == 'Open'){
-            $("#homepageDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-        } else if(doorReuslt.Value == 'Close'){
-            $("#homepageDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-        } else {
-            $("#homepageDoorStatus").html("<b>Auto | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
-        }    
     });
 }
 
-function createAllSettings(){
-    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights", value:"Off"}, function (sessionResult) {
-        sessionResult = JSON.parse(sessionResult);
-    });
-    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan", value:"Off"}, function (sessionResult) {
-        sessionResult = JSON.parse(sessionResult);
-    });
-    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat", value:"Off"}, function (sessionResult) {
-        sessionResult = JSON.parse(sessionResult);
-    });
-    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door", value:"Close"}, function (sessionResult) {
-        sessionResult = JSON.parse(sessionResult);
+function fanOn(){
+    let fanOnTime = $('#fanOnTimer').val();
+    $("#temperatureFanStatus").html("<b>Timer On| Time Left:"+ fanOnTime +" Mins</b>");
+    $("#homepageFanStatus").html("<b>Timer On| Time Left:"+ fanOnTime +" Mins</b>");
+    let fanOnTimer = setInterval(function(){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanResult){
+            if(fanResult.Value == 'On'){
+                clearInterval(fanOnTimer);
+            } else if(fanResult.Value == 'Off'){
+                clearInterval(fanOnTimer);
+            } else if((fanResult.Value.split('|')[0]) == 'Auto'){
+                clearInterval(fanOnTimer); 
+            } else {
+                if(fanOnTime == 0){
+                    clearInterval(fanOnTimer);
+                    fanOff();
+                } else {
+                fanOnTime--;
+                    $("#temperatureFanStatus").html("<b>Timer On| Time Left:"+ fanOnTime +" Mins</b>");
+                    $("#homepageFanStatus").html("<b>Timer On| Time Left:"+ fanOnTime +" Mins</b>");
+                }
+            }
+        });
+   }, 5000);
+
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=Timer On|" + fanOnTime,
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanResult){
+                $("#temperatureFanStatus").html("<b>Timer On| Time Left:"+ (fanResult.Value.split('|')[1]) +" Mins</b>");
+                $("#homepageFanStatus").html("<b>Timer On| Time Left:"+ (fanResult.Value.split('|')[1]) +" Mins</b>");
+            })
+            heatOff();
+        }
     });
 }
 
@@ -242,68 +330,7 @@ function fanOff(){
     });
 }
 
-$('#manualDoorOpen').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Open",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-            });
-        }
-    });
-});
-
-$('#manualDoorClose').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Close",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-            });
-        }
-    });
-});
-
-$('#manualFanOff').on('click', function () {
-    fanOff()
-});
-
-$('#manualHeatOff').on('click', function () {
-    heatOff()
-});
-
-$('#manualFanOn').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=On",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
-                $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
-            });
-            heatOff()
-        }
-    });
-});
-
-$('#manualHeatOn').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Heat&value=On",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
-                $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
-            })
-            fanOff()
-        }
-    });
-});
-
+//light controls
 $('#flexSwitchCheckChecked').on('change', function(){
     if($('#flexSwitchCheckChecked').is(':checked')){
         $.ajax({
@@ -334,10 +361,38 @@ $('#lightSubmit').on('click', function () {
     autoLights()
 });
 
+//door controls
 $('#DoorSubmit').on('click', function () {
     autoDoor()
 });
 
+$('#manualDoorOpen').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Open",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
+                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+            });
+        }
+    });
+});
+
+$('#manualDoorClose').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Close",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
+                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+            });
+        }
+    });
+});
+
+//temp controls
 $('#autoHeatOnSubmit').on('click', function(){
     autoHeat();
 });
@@ -345,3 +400,51 @@ $('#autoHeatOnSubmit').on('click', function(){
 $('#autoFanOnSubmit').on('click', function(){
     autoFan();
 });
+
+$('#heatOnTimerSubmit').on('click', function(){
+    fanOff();
+    heatOn();
+});
+
+$('#fanOnTimerSubmit').on('click', function(){
+    heatOff();
+    fanOn();
+});
+
+$('#manualFanOff').on('click', function () {
+    fanOff()
+});
+
+$('#manualHeatOff').on('click', function () {
+    heatOff()
+});
+
+$('#manualFanOn').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=On",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
+                $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
+            });
+            heatOff()
+            
+        }
+    });
+});
+
+$('#manualHeatOn').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Heat&value=On",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
+                $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
+            })
+            fanOff()
+        }
+    });
+});
+
