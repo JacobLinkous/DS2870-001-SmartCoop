@@ -419,8 +419,8 @@ function waterUse(){
 }
 
 //light controls
-$('#flexSwitchCheckChecked').on('change', function(){
-    if($('#flexSwitchCheckChecked').is(':checked')){
+$('#lightsAutoSwitchControl').on('change', function(){
+    if($('#lightsAutoSwitchControl').is(':checked')){
         $.ajax({
             url: 'https://simplecoop.swollenhippo.com/settings.php',
             type: 'PUT',
@@ -452,6 +452,32 @@ $('#lightSubmit').on('click', function () {
 //door controls
 $('#DoorSubmit').on('click', function () {
     autoDoor()
+});
+
+$('#doormanualcontrol').on('change', function(){
+    if($('#doormanualcontrol').is(':checked')){
+        $.ajax({
+            url: 'https://simplecoop.swollenhippo.com/settings.php',
+            type: 'PUT',
+            data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Open",
+            success: function(){
+                $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(lightsReuslt){
+                    $("#doorDoorStatus").html("<b>"+lightsReuslt.Value+"</b>");
+                });
+            }
+        });
+    }else {
+        $.ajax({
+            url: 'https://simplecoop.swollenhippo.com/settings.php',
+            type: 'PUT',
+            data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Close",
+            success: function(){
+                $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(lightsReuslt){
+                    $("#doorDoorStatus").html("<b>"+lightsReuslt.Value+"</b>");
+                });
+            }
+        });
+    }
 });
 
 $('#manualDoorOpen').on('click', function () {
