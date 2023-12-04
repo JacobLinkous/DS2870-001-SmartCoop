@@ -27,8 +27,10 @@ $('#lightsbtn').on('click', function () {
     closeAll();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
         if(lightsReuslt.Value == 'On'){
+            $('#lightsAutoSwitchControl').prop('checked', true);
             $("#lightsLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
         } else if(lightsReuslt.Value == 'Off'){
+            $('#lightsAutoSwitchControl').prop('checked', false);
             $("#lightsLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
         } else {
             $("#lightsLightsStatus").html("<b>Auto | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
@@ -54,8 +56,10 @@ $('#doorbtn').on('click', function () {
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
         if(doorReuslt.Value == 'Open'){
             $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+            $('#doormanualcontrol').prop('checked', true);
         } else if(doorReuslt.Value == 'Close'){
             $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
+            $('#doormanualcontrol').prop('checked', false);
         } else {
             $("#doorDoorStatus").html("<b>Auto | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
         }    
