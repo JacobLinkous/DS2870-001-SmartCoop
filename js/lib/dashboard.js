@@ -79,9 +79,6 @@ function getWeather(){
         $('#temperatureCurrentStatus').html("<b>"+temperature+"°F</b>");
         return;
     })
-    .catch(error => {
-        console.log('Error fetching weather data:', error);
-    }); 
 }
 
 function getTime(){
@@ -247,7 +244,6 @@ function heatOn(){
     $("#homepageHeatStatus").html("<b>Timer On| Time Left:"+ heatOnTime +" Mins</b>");
     let heatOnTimer = setInterval(function(){
         $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatResult){
-            console.log(heatResult.Value)
             if(heatResult.Value == 'On'){
                 clearInterval(heatOnTimer);
             } else if(heatResult.Value == 'Off'){
