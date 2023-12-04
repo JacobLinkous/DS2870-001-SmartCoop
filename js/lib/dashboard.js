@@ -4,6 +4,8 @@ $.get('https://simplecoop.swollenhippo.com/coop.php?SessionID=5e88dbee-4e00-430d
         console.log(result.ZIP);
     });
 */
+let FoodAlarmStart = true;
+let WaterAlarmStart = true;
 
 function checkStatusHomePage(){
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
@@ -30,6 +32,15 @@ function checkStatusHomePage(){
             $("#homepageDoorStatus").html("<b>Auto | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
         }    
     });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
+        $("#homepageWaterStatus").html("<b>Water|"+ waterReuslt.Value +"%</b>");
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodReuslt){
+        $("#homepageFoodStatus").html("<b>Food|"+ foodReuslt.Value +"%</b>");
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggReuslt){
+        $("#homepageEggCount").html("<b>Eggs|"+ eggReuslt.Value +"</b>");
+    }); 
 }
 
 function createAllSettings(){
@@ -43,6 +54,21 @@ function createAllSettings(){
         sessionResult = JSON.parse(sessionResult);
     });
     $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door", value:"Close"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food", value:"100"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water", value:"100"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"WaterAlarm", value:"0"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"FoodAlarm", value:"0"}, function (sessionResult) {
+        sessionResult = JSON.parse(sessionResult);
+    });
+    $.post('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs", value:"0"}, function (sessionResult) {
         sessionResult = JSON.parse(sessionResult);
     });
 }
@@ -230,15 +256,11 @@ function heatOn(){
             console.log(heatResult.Value)
             if(heatResult.Value == 'On'){
                 clearInterval(heatOnTimer);
-                console.log('on')
             } else if(heatResult.Value == 'Off'){
                 clearInterval(heatOnTimer);
-                console.log('off')
             } else if((heatResult.Value.split('|')[0]) == 'Auto'){
                 clearInterval(heatOnTimer); 
-                console.log('auto')
             } else {
-                console.log('timer')
                 if(heatOnTime == 0){
                     clearInterval(heatOnTimer);
                     heatOff();
@@ -328,6 +350,82 @@ function fanOff(){
             });
         }
     });
+}
+
+function foodAlarm(){
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodResult){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"FoodAlarm"}, function(foodAlarmPercentage){
+            if((foodResult.Value*1) <= (foodAlarmPercentage.Value*1)){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Food is low',
+                    html: "Food is at " + foodResult.Value + "%"
+                });
+                FoodAlarmStart = false;
+            }
+        });
+    });
+}
+
+function waterAlarm(){
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterResult){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"WaterAlarm"}, function(waterAlarmPercentage){
+            if((waterResult.Value*1) <= (waterAlarmPercentage.Value*1)){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Water is low',
+                    html: "Water is at " + waterResult.Value + "%"
+                });
+                WaterAlarmStart = false;
+            }
+        });
+    });
+}    
+
+function foodUse(){
+    let tempFood = 100;
+    let foodUse = setInterval(function(){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodResult){
+            if((foodResult.Value*1) <= 0){
+                clearInterval(foodUse);
+            } else {
+                if(FoodAlarmStart){
+                    foodAlarm();
+                }
+                tempFood = foodResult.Value - (Math.floor(Math.random() * 5) + 1);
+                $("#foodStatus").html("<b>Food|"+ tempFood +"%</b>");
+                $("#homepageFoodStatus").html("<b>Food|"+ tempFood +"%</b>");
+                $.ajax({
+                    url: 'https://simplecoop.swollenhippo.com/settings.php',
+                    type: 'PUT',
+                    data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Food&value="+ tempFood,
+                });
+            }
+        });
+   }, 20000);
+}
+
+function waterUse(){
+    let tempWater = 100;
+    let waterUse = setInterval(function(){
+        $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterResult){
+            if((waterResult.Value*1) <= 0){
+                clearInterval(waterUse);
+            } else {
+                if(WaterAlarmStart){
+                    waterAlarm();
+                }
+                tempWater = waterResult.Value - (Math.floor(Math.random() * 5) + 1);
+                $("#waterStatus").html("<b>Water|"+ tempWater +"%</b>");
+                $("#homepageWaterStatus").html("<b>Water|"+ tempWater +"%</b>");
+                $.ajax({
+                    url: 'https://simplecoop.swollenhippo.com/settings.php',
+                    type: 'PUT',
+                    data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Water&value="+ tempWater,
+                });
+            }
+        });
+   }, 20000);
 }
 
 //light controls
@@ -448,3 +546,67 @@ $('#manualHeatOn').on('click', function () {
     });
 });
 
+//food and water controls
+$('#foodReset').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Food&value=100",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodReuslt){
+                $("#foodStatus").html("<b>Food|"+ foodReuslt.Value +"%</b>");
+            });
+            foodUse()
+        }
+    });
+});
+
+$('#waterReset').on('click', function () {
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Water&value=100",
+        success: function(){
+            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
+                $("#waterStatus").html("<b>Water|"+ waterReuslt.Value +"%</b>");
+            });
+            waterUse()
+        }
+    });
+});
+
+$('#foodAlarmSubmit').on('click', function(){
+    let foodAlarmPercentage = $('#foodAlarm').val();
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=FoodAlarm&value="+ foodAlarmPercentage,
+    });
+    FoodAlarmStart = true;
+});
+
+$('#waterAlarmSubmit').on('click', function(){
+    let waterAlarmPercentage = $('#waterAlarm').val();
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/settings.php',
+        type: 'PUT',
+        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=WaterAlarm&value="+ waterAlarmPercentage,
+    });
+    WaterAlarmStart = true;
+});
+
+//egg controls
+$('#eggCountSubmit').on('click', function(){
+    let eggCount = $('#eggCountInput').val();
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggResult){
+        eggCount = (eggResult.Value*1) + (eggCount*1);
+        $('#eggCountInput').val(0);
+        $("#eggCountTotal").html("<b>Eggs|"+ eggCount +"</b>");
+        $("#homepageEggCount").html("<b>Eggs|"+ eggCount +"</b>");
+        $.ajax({
+            url: 'https://simplecoop.swollenhippo.com/settings.php',
+            type: 'PUT',
+            data: "SessionID="+ sessionStorage.getItem("SessionID") +"&setting=TotalEggs&value="+ eggCount,
+        });
+    });
+});

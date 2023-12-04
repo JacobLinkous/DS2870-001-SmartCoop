@@ -65,10 +65,19 @@ $('#doorbtn').on('click', function () {
 
 $('#foodandwaterbtn').on('click', function () {
     closeAll();
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
+        $("#waterStatus").html("<b>Water|"+ waterReuslt.Value +"%</b>");
+    });
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Food"}, function(foodReuslt){
+        $("#foodStatus").html("<b>Food|"+ foodReuslt.Value +"%</b>");
+    });
     $('#foodandwater').slideDown();
 });
 
 $('#eggbtn').on('click', function () {
     closeAll();
+    $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggReuslt){
+        $("#eggCountTotal").html("<b>Eggs|"+ eggReuslt.Value +"</b>")
+    });
     $('#egg').slideDown();
 });

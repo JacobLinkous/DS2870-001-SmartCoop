@@ -297,6 +297,8 @@
                                 d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
                             </path>
                         </svg>Food/Water</p>
+                        <p id="homepageFoodStatus">null</p>
+                        <p id="homepageWaterStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageEggs">
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -305,6 +307,7 @@
                                 d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
                             </path>
                         </svg>Eggs</p>
+                        <p id="homepageEggCount">null</p>
                 </div>
             </div>
             <div class="row" id="lights" style="display: none;">
@@ -332,11 +335,21 @@
                 </div>
             </div>
             <div class="row" id="foodandwater" style="display: none;">
-                <div class="col-6 card" id="foodandwaterFoodStatus">
+                <div class="col-6 card" id="foodInfo">
                     <p>Food</p>
+                    <label id="foodStatus">null</label>
+                    <button id="foodReset" type="button" class="btn btn-warning">Reset</button>
+                    <input type="number" placeholder="Warning Percentage" id="foodAlarm">
+                    <button id="foodAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                    
                 </div>
-                <div class="col-6 card" id="foodandwaterWaterStatus">
+                <div class="col-6 card" id="waterInfo">
                     <p>Water</p>
+                    <label id="waterStatus">null</label>
+                    <button id="waterReset" type="button" class="btn btn-warning">Reset</button>
+                    <input type="number" placeholder="Warning Percentage" id="waterAlarm">
+                    <button id="waterAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                    
                 </div>
             </div>
             <div class="row" id="temperature" style="display: none;">
@@ -369,6 +382,9 @@
             <div class="row" id="egg" style="display: none;">
                 <div class="col-6 card" id="eggCount">
                     <p>egg</p>
+                    <input type="number" placeholder="Egg Count" id="eggCountInput">
+                    <button type="button" id="eggCountSubmit" class="btn btn-success">Submit</button>
+                    <p id="eggCountTotal">null</p>
                 </div>
             </div>
         </div>
