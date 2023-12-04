@@ -215,11 +215,11 @@ function autoFan(){
                 clearInterval(fanChecker);
             } else {
                 if(sessionStorage.getItem('currentTemp') >= (fanReuslt.Value.split('|')[1]*1)){
-                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
-                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " On | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 }else{
-                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
-                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#homepageFanStatus").html("<b>"+ (fanReuslt.Value.split('|')[0]) + " Off | Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 }
             }      
         });
@@ -233,7 +233,7 @@ function autoFan(){
             data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=Auto|" + ($('#autoFanOn').val()*1),
             success: function(){
                 $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
-                    $("#temperatureFanStatus").html("<b>Auto| Heat:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
+                    $("#temperatureFanStatus").html("<b>Auto| Fan:"+ (fanReuslt.Value.split('|')[1]) +"</b>");
                 })
                 heatOff();
             }
