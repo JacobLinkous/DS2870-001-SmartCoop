@@ -408,36 +408,56 @@
                     </div>
 
                     <div class="row" id="foodandwater" style="display: none;">
-                        <div class="col-6 card" id="foodandwaterFoodStatus">
+                        <div class="col-6 card" id="foodInfo">
                             <p>Food</p>
+                            <label id="foodStatus">null</label>
+                            <button id="foodReset" type="button" class="btn btn-warning">Reset</button>
+                            <input type="number" placeholder="Warning Percentage" id="foodAlarm">
+                            <button id="foodAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                            
                         </div>
-                        <div class="col-6 card" id="foodandwaterWaterStatus">
+                        <div class="col-6 card" id="waterInfo">
                             <p>Water</p>
+                            <label id="waterStatus">null</label>
+                            <button id="waterReset" type="button" class="btn btn-warning">Reset</button>
+                            <input type="number" placeholder="Warning Percentage" id="waterAlarm">
+                            <button id="waterAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                            
                         </div>
                     </div>
                     <div class="row" id="temperature" style="display: none;">
                         <div class="col-6 card" id="temperatureHeatAuto">
                             <input type="number" placeholder="Temperature" id="autoHeatOn">
                             <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
+                            <input type="number" placeholder="Timer" id="heatOnTimer">
+                            <button type="button" id="heatOnTimerSubmit" class="btn btn-success">Submit</button>
                         </div>
                         <div class="col-6 card" id="temperatureHeatManual">
+                            <p id="temperatureHeatStatus">null</p>
                             <button type="button" class="btn btn-success" id="manualHeatOn">Heat On</button>
-                            <input type="time" placeholder="Duration" id="heatOnTime">
                             <button type="button" class="btn btn-danger" id="manualHeatOff">Heat Off</button>
                         </div>
                         <div class="col-6 card" id="temperatureFanAuto">
                             <input type="number" placeholder="Temperature" id="autoFanOn">
                             <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
+                            <input type="number" placeholder="Timer" id="fanOnTimer">
+                            <button type="button" id="fanOnTimerSubmit" class="btn btn-success">Submit</button>
                         </div>
                         <div class="col-6 card" id="temperatureFanManual">
+                            <p id="temperatureFanStatus">null</p>
                             <button type="button" class="btn btn-success" id="manualFanOn">Fan On</button>
-                            <input type="time" placeholder="Duration" id="heatOnTime">
                             <button type="button" class="btn btn-danger" id="manualFanOff">Fan Off</button>
+                        </div>
+                        <div class="col-6 card" id="temperatureCurrent">
+                            <p id="temperatureCurrentStatus">null</p>
                         </div>
                     </div>
                     <div class="row" id="egg" style="display: none;">
                         <div class="col-6 card" id="eggCount">
                             <p>egg</p>
+                            <input type="number" placeholder="Egg Count" id="eggCountInput">
+                            <button type="button" id="eggCountSubmit" class="btn btn-success">Submit</button>
+                            <p id="eggCountTotal">null</p>
                         </div>
                     </div>
                 </div>
