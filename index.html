@@ -169,7 +169,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="txtCoopRegistrationID">Registration ID*</label>
+                    <label for="txtCoopRegistrationID">Coop ID*</label>
                     <input id="txtCoopRegistrationID" type="text" class="form-control mb-2" required>
                 </div>
 
@@ -253,6 +253,7 @@
                                 d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
                             </path>
                         </svg>Lights</p>
+                        <p id="homepageLightsStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageHeat">
                     <p> <label type="label" class="form-label">
@@ -263,8 +264,8 @@
                                 <path
                                     d="M1 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0zM3.5 1A1.5 1.5 0 0 0 2 2.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0L5 10.486V2.5A1.5 1.5 0 0 0 3.5 1m5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5m4.243 1.757a.5.5 0 0 1 0 .707l-.707.708a.5.5 0 1 1-.708-.708l.708-.707a.5.5 0 0 1 .707 0M8 5.5a.5.5 0 0 1 .5-.5 3 3 0 1 1 0 6 .5.5 0 0 1 0-1 2 2 0 0 0 0-4 .5.5 0 0 1-.5-.5M12.5 8a.5.5 0 0 1 .5-.5h1a.5.5 0 1 1 0 1h-1a.5.5 0 0 1-.5-.5m-1.172 2.828a.5.5 0 0 1 .708 0l.707.708a.5.5 0 0 1-.707.707l-.708-.707a.5.5 0 0 1 0-.708M8.5 12a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5">
                                 </path>
-                            </svg>Heat
-                    </p>
+                            </svg>Heat</p>
+                            <p id="homepageHeatStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageFan">
                     <p>
@@ -273,9 +274,8 @@
                             <path
                                 d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5">
                             </path>
-                        </svg>
-                        Fan
-                    </p>
+                        </svg>Fan</p>
+                        <p id="homepageFanStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageDoor">
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -284,7 +284,8 @@
                             <path
                                 d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
                             </path>
-                        </svg>Door</p>
+                        </svg>Door Status:</p>
+                        <p id="homepageDoorStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageFoodWater">
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -296,6 +297,8 @@
                                 d="M10.464 3.314a.5.5 0 0 0-.945.049L7.921 8.956 6.464 5.314a.5.5 0 0 0-.88-.091L3.732 8H.5a.5.5 0 0 0 0 1H4a.5.5 0 0 0 .416-.223l1.473-2.209 1.647 4.118a.5.5 0 0 0 .945-.049l1.598-5.593 1.457 3.642A.5.5 0 0 0 12 9h3.5a.5.5 0 0 0 0-1h-3.162z">
                             </path>
                         </svg>Food/Water</p>
+                        <p id="homepageFoodStatus">null</p>
+                        <p id="homepageWaterStatus">null</p>
                 </div>
                 <div class="col-6 card" id="homepageEggs">
                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -304,83 +307,86 @@
                                 d="M8 15a5 5 0 0 1-5-5c0-1.956.69-4.286 1.742-6.12.524-.913 1.112-1.658 1.704-2.164C7.044 1.206 7.572 1 8 1c.428 0 .956.206 1.554.716.592.506 1.18 1.251 1.704 2.164C12.31 5.714 13 8.044 13 10a5 5 0 0 1-5 5m0 1a6 6 0 0 0 6-6c0-4.314-3-10-6-10S2 5.686 2 10a6 6 0 0 0 6 6">
                             </path>
                         </svg>Eggs</p>
+                        <p id="homepageEggCount">null</p>
                 </div>
             </div>
             <div class="row" id="lights" style="display: none;">
-                <div class="col-md-6 mb-4">
-                    <div class="card text-white bg-info">
-                        <div class="card-body">
-                            <h5 class="card-title">Manual Lights Control</h5>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="lightsAutoSwitch"
-                                    checked>
-                                <label class="form-check-label" for="lightsAutoSwitch">Manual Lights
-                                    Control</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                    <div class="card text-white bg-success">
-                        <div class="card-body">
-                            <h5 class="card-title">Custom Lights Schedule</h5>
-                            <div class="mb-3">
-                                <label for="lightsOnTime" class="form-label">Turn On Time</label>
-                                <input type="time" class="form-control" id="lightsOnTime">
-                            </div>
-                            <div class="mb-3">
-                                <label for="lightsOffTime" class="form-label">Turn Off Time</label>
-                                <input type="time" class="form-control" id="lightsOffTime">
-                            </div>
-                            <button type="button" class="btn btn-light" id="lightSubmit">Submit</button>
-                        </div>
-                    </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked="true">
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+                    <p id="lightsLightsStatus">null</p>
+                  </div>
+                <div class="col-6 card" id="lightsAuto">
+                    <input type="time" placeholder="On Time" id="LightsOnTime">
+                    <input type="time" placeholder="Off Time" id="LightsOffTime">
+                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
                 </div>
             </div>
 
 
             <div class="row" id="door" style="display: none;">
                 <div class="col-6 card" id="doorManual">
+                    <p id="doorDoorStatus">null</p>
                     <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
                     <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
                 </div>
                 <div class="col-6 card" id="doorAuto">
-                    <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
-                    <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
-                    <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
+                    <input type="time" placeholder="Door Open" id="DoorOpenTime">
+                    <input type="time" placeholder="Door Close" id="DoorCloseTime">
+                    <button type="button" id="DoorSubmit" class="btn btn-success">Submit</button>
                 </div>
             </div>
             <div class="row" id="foodandwater" style="display: none;">
-                <div class="col-6 card" id="foodandwaterFoodStatus">
+                <div class="col-6 card" id="foodInfo">
                     <p>Food</p>
+                    <label id="foodStatus">null</label>
+                    <button id="foodReset" type="button" class="btn btn-warning">Reset</button>
+                    <input type="number" placeholder="Warning Percentage" id="foodAlarm">
+                    <button id="foodAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                    
                 </div>
-                <div class="col-6 card" id="foodandwaterWaterStatus">
+                <div class="col-6 card" id="waterInfo">
                     <p>Water</p>
+                    <label id="waterStatus">null</label>
+                    <button id="waterReset" type="button" class="btn btn-warning">Reset</button>
+                    <input type="number" placeholder="Warning Percentage" id="waterAlarm">
+                    <button id="waterAlarmSubmit" type="button" class="btn btn-success">Submit</button>
+                    
                 </div>
             </div>
             <div class="row" id="temperature" style="display: none;">
                 <div class="col-6 card" id="temperatureHeatAuto">
                     <input type="number" placeholder="Temperature" id="autoHeatOn">
                     <button type="button" id="autoHeatOnSubmit" class="btn btn-success">Submit</button>
+                    <input type="number" placeholder="Timer" id="heatOnTimer">
+                    <button type="button" id="heatOnTimerSubmit" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col-6 card" id="temperatureHeatManual">
+                    <p id="temperatureHeatStatus">null</p>
                     <button type="button" class="btn btn-success" id="manualHeatOn">Heat On</button>
-                    <input type="time" placeholder="Duration" id="heatOnTime">
                     <button type="button" class="btn btn-danger" id="manualHeatOff">Heat Off</button>
                 </div>
                 <div class="col-6 card" id="temperatureFanAuto">
                     <input type="number" placeholder="Temperature" id="autoFanOn">
                     <button type="button" id="autoFanOnSubmit" class="btn btn-success">Submit</button>
+                    <input type="number" placeholder="Timer" id="fanOnTimer">
+                    <button type="button" id="fanOnTimerSubmit" class="btn btn-success">Submit</button>
                 </div>
                 <div class="col-6 card" id="temperatureFanManual">
+                    <p id="temperatureFanStatus">null</p>
                     <button type="button" class="btn btn-success" id="manualFanOn">Fan On</button>
-                    <input type="time" placeholder="Duration" id="heatOnTime">
                     <button type="button" class="btn btn-danger" id="manualFanOff">Fan Off</button>
+                </div>
+                <div class="col-6 card" id="temperatureCurrent">
+                    <p id="temperatureCurrentStatus">null</p>
                 </div>
             </div>
             <div class="row" id="egg" style="display: none;">
                 <div class="col-6 card" id="eggCount">
                     <p>egg</p>
+                    <input type="number" placeholder="Egg Count" id="eggCountInput">
+                    <button type="button" id="eggCountSubmit" class="btn btn-success">Submit</button>
+                    <p id="eggCountTotal">null</p>
                 </div>
             </div>
         </div>
@@ -392,8 +398,9 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="js/lib/LoginAndRegistration.js"></script>
+    <script src="js/lib/dashboard.js"></script>
     <script src="js/lib/toggles.js"></script>
+    <script src="js/lib/LoginAndRegistration.js"></script>
 </body>
 
 </html>

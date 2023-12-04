@@ -49,9 +49,10 @@ $('#btnLogin').on('click', function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp(function () {
+                        checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });
-                }, 2000);
+                }, 500);
             }
         })
 
@@ -119,7 +120,6 @@ $('#btnRegister').on('click', function () {
         }
     }
 
-
     if (strFirstName == '') {
         blnError = true;
         strErrorMessage += "<h5>First Name can't be blank.</h5>";
@@ -129,10 +129,6 @@ $('#btnRegister').on('click', function () {
         strErrorMessage += "<h5>Last Name can't be blank.</h5>";
     }
     if (strStreetAddress1 == '') {
-        blnError = true;
-        strErrorMessage += "<h5>Street Address can't be blank.</h5>";
-    }
-    if (strStreetAddress2 == '') {
         blnError = true;
         strErrorMessage += "<h5>Street Address can't be blank.</h5>";
     }
@@ -170,15 +166,15 @@ $('#btnRegister').on('click', function () {
                 Swal.fire({
                     icon: 'error',
                     html: result.Error
-                })
+                });
             } else {
                 $.post('https://simplecoop.swollenhippo.com/useraddress.php', { Email: strEmail, Street1: strStreetAddress1, Street2: strStreetAddress2, City: strCity, State: strState, ZIP: strZipCode }, function (addressResult) {
-                    result = JSON.parse(addressResult);
+                    addressResult = JSON.parse(addressResult);
                     if (addressResult.Error) {
                         Swal.fire({
                             icon: 'error',
                             html: addressResult.Error
-                        })
+                        });
                     } else {
                         $.post('https://simplecoop.swollenhippo.com/sessions.php', { Email: strEmail, Password: strRegisterPassword }, function (sessionResult) {
                             sessionResult = JSON.parse(sessionResult);
@@ -186,24 +182,35 @@ $('#btnRegister').on('click', function () {
                                 Swal.fire({
                                     icon: 'error',
                                     html: sessionResult.Error
-                                })
-                            } else {
-                                sessionStorage.setItem("SessionID", sessionResult.SessionID);
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Registration Successful',
-                                    showConfirmButton: false
                                 });
-                                setTimeout(function () {
-                                    Swal.close()
-                                    $('#registerCard').slideUp();
-                                    $('#loginCard').slideUp();
-                                }, 2000);
-                            }
-                        })
+                            } else {
+                                $.ajax({
+                                    url: 'https://simplecoop.swollenhippo.com/coop.php',
+                                    type: 'PUT',
+                                    data: "SessionID="+sessionResult.SessionID+"&Street1="+strStreetAddress1+"&Street2="+strStreetAddress2+"&City="+strCity+"&State="+strState+"&ZIP="+strZipCode+"",
+                                    success: function(data) {
+                                        sessionStorage.setItem("SessionID", sessionResult.SessionID);
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Registration Successful',
+                                            showConfirmButton: false
+                                        });
+                                        setTimeout(function () {
+                                            Swal.close()
+                                            $('#registerCard').slideUp();
+                                            $('#loginCard').slideUp(function () {
+                                                $('#dashboardCard').slideDown();
+                                            });
+                                        }, 2000);
+                                        createAllSettings();
+                                        checkStatusHomePage();
+                                    }
+                                });
+                            }       
+                        });
                     }
-                })
+                });
             }
-        })
+        });
     }
-})
+});
