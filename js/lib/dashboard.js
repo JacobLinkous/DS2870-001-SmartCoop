@@ -74,8 +74,12 @@ function getWeather(){
     .then(response => response.json())
     .then(data => {
         let temperature = data.main.temp;
+        let humidity = data.main.humidity;
+        console.log(humidity);
         temperature = (Math.trunc((temperature-273.15)*(9/5)+32));
+        sessionStorage.setItem("currentHumidity", humidity);
         sessionStorage.setItem("currentTemp", temperature);
+        $('#temperatureCurrentHumidity').html("<b>"+humidity+"%</b>");
         $('#temperatureCurrentStatus').html("<b>"+temperature+"°F</b>");
         return;
     })
@@ -325,6 +329,7 @@ function heatOff(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
                 $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
             });
+            $('#heatmanualcontrol').prop('checked', false);
         }
     });
 }
@@ -338,6 +343,7 @@ function fanOff(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
                 $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
             });
+            $('#fanmanualcontrol').prop('checked', false);
         }
     });
 }
@@ -480,6 +486,7 @@ $('#doormanualcontrol').on('change', function(){
     }
 });
 
+/*
 $('#manualDoorOpen').on('click', function () {
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -505,6 +512,7 @@ $('#manualDoorClose').on('click', function () {
         }
     });
 });
+*/
 
 //temp controls
 $('#autoHeatOnSubmit').on('click', function(){
@@ -525,6 +533,7 @@ $('#fanOnTimerSubmit').on('click', function(){
     fanOn();
 });
 
+/*
 $('#manualFanOff').on('click', function () {
     fanOff()
 });
@@ -560,6 +569,43 @@ $('#manualHeatOn').on('click', function () {
             fanOff()
         }
     });
+});
+*/
+
+$('#heatmanualcontrol').on('change', function () {
+    if($('#heatmanualcontrol').is(':checked')){
+        $.ajax({
+            url: 'https://simplecoop.swollenhippo.com/settings.php',
+            type: 'PUT',
+            data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Heat&value=On",
+            success: function(){
+                $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
+                    $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
+                })
+                fanOff()
+            }
+        });
+    }else {
+        heatOff();
+    }
+});
+
+$('#fanmanualcontrol').on('change', function () {
+    if($('#fanmanualcontrol').is(':checked')){
+        $.ajax({
+            url: 'https://simplecoop.swollenhippo.com/settings.php',
+            type: 'PUT',
+            data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=On",
+            success: function(){
+                $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
+                    $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
+                });
+                heatOff()
+            }
+        });
+    }else {
+        fanOff();
+    }
 });
 
 //food and water controls

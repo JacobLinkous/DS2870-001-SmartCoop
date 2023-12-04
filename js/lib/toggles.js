@@ -44,9 +44,23 @@ $('#tempbtn').on('click', function () {
     getWeather();
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
         $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
+        if(heatReuslt.Value == 'On'){
+            $('#heatmanualcontrol').prop('checked', true);
+        } else if(heatReuslt.Value == 'Off'){
+            $('#heatmanualcontrol').prop('checked', false);
+        } else {
+            
+        }
     })
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
         $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
+        if(fanReuslt.Value == 'On'){
+            $('#fanmanualcontrol').prop('checked', true);
+        } else if(fanReuslt.Value == 'Off'){
+            $('#fanmanualcontrol').prop('checked', false);
+        } else {
+            console.log('sad')
+        }
     });
     $('#temperature').slideDown();
 });
