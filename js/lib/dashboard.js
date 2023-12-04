@@ -261,7 +261,7 @@ function heatOn(){
                 }
             }
         });
-   }, 20000);
+   }, 60000);
 
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -300,7 +300,7 @@ function fanOn(){
                 }
             }
         });
-   }, 20000);
+   }, 60000);
 
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
