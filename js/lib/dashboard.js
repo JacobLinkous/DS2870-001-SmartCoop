@@ -111,7 +111,7 @@ function autoLights(){
                 }
             }      
         });
-    }, 3000);
+    }, 20000);
     
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -150,7 +150,7 @@ function autoDoor(){
                 }
             }      
         });
-    }, 3000);
+    }, 20000);
     
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -183,7 +183,7 @@ function autoHeat(){
                 }
             }      
         });
-    }, 10000);
+    }, 20000);
 
     getWeather();
     if(sessionStorage.getItem('currentTemp') <= ($('#autoHeatOn').val()*1)){
@@ -220,7 +220,7 @@ function autoFan(){
                 }
             }      
         });
-    }, 10000);
+    }, 20000);
 
     getWeather();
     if(sessionStorage.getItem('currentTemp') >= ($('#autoFanOn').val()*1)){
@@ -261,7 +261,7 @@ function heatOn(){
                 }
             }
         });
-   }, 5000);
+   }, 20000);
 
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
@@ -300,7 +300,7 @@ function fanOn(){
                 }
             }
         });
-   }, 5000);
+   }, 20000);
 
     $.ajax({
         url: 'https://simplecoop.swollenhippo.com/settings.php',
