@@ -316,19 +316,23 @@
                             <div class="card text-white bg-success w-100">
                                 <div class="card-body d-flex flex-column align-items-center">
                                     <h5 class="card-title text-center mb-3">Manual Lights Control</h5>
-                                    <div class="mb-3 d-flex align-items-center justify-content-center">
+                                    <div class="mb-2 d-flex align-items-center justify-content-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
                                             fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
                                             <path
                                                 d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6m6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1">
                                             </path>
                                         </svg>
-                                    </div>
-                                    <div class="form-check form-switch" id="lightswitch">
 
+                                    </div>
+
+                                    <div class="form-check form-switch d-flex  text-center align-items-center mt-3 col-12 col-md-8"
+                                        id="lightswitch">
                                         <input class="form-check-input" type="checkbox" role="switch"
-                                            id="lightsAutoSwitchControl" checked><br>
-                                        <label class="form-check-label mt-2 justify-content-center"
+                                            id="lightsAutoSwitchControl" checked>
+                                    </div>
+                                    <div>
+                                        <label class="form-check-label justify-content-center mt-2"
                                             for="lightsAutoSwitchControl">OFF / ON</label>
                                     </div>
                                 </div>
@@ -353,21 +357,53 @@
                         </div>
                     </div>
 
+                    <div class="row align-items-center" id="door" style="display: none;">
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-success w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Manual Door Control</h5>
+                                    <div class="mb-2 d-flex align-items-center justify-content-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                                        class="bi bi-door-open" viewBox="0 0 16 16">
+                                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"></path>
+                                        <path
+                                            d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
+                                        </path>
+                                    </svg>
 
+                                    </div>
 
-
-
-                    <div class="row" id="door" style="display: none;">
-                        <div class="col-6 card" id="doorManual">
-                            <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
-                            <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
+                                    <div class="form-check form-switch d-flex text-center align-items-center mt-3 col-12 col-md-8"
+                                        id="doorswitch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="doormanualcontrol" checked>
+                                    </div>
+                                    <div>
+                                        <label class="form-check-label justify-content-center mt-2"
+                                            for="doormanualcontrol">OFF / ON</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-6 card" id="doorAuto">
-                            <button type="button" class="btn btn-success" id="manualDoorOpen">Open Door</button>
-                            <button type="button" class="btn btn-danger" id="manualDoorClose">Close door</button>
-                            <button type="button" id="lightSubmit" class="btn btn-success">Submit</button>
+
+                        <div class="col-12 col-md-6 mb-md-0 mb-3">
+                            <div class="card text-white bg-info w-100">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <h5 class="card-title text-center mb-3">Custom Door Schedule</h5>
+                                    <div class="mb-3 col-8 text-center">
+                                        <label for="doorOpenTime" class="form-label mb-0">Open Time</label>
+                                        <input type="time" class="form-control" id="doorOpenTime">
+                                    </div>
+                                    <div class="mb-3 col-8 text-center">
+                                        <label for="doorClosedTime" class="form-label mb-0">Closed Time</label>
+                                        <input type="time" class="form-control" id="doorClosedTime">
+                                    </div>
+                                    <button type="button" class="btn btn-light">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div class="row" id="foodandwater" style="display: none;">
                         <div class="col-6 card" id="foodandwaterFoodStatus">
                             <p>Food</p>
