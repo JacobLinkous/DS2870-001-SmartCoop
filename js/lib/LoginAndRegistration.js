@@ -10,6 +10,14 @@ txtPhoneNumber.addEventListener('input', function (e) {
     e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
 });
 
+var txtZipCode = document.getElementById('txtZipCode');
+
+txtZipCode.addEventListener('input', function (e) {
+    var zipCode = e.target.value.replace(/\D/g, '').slice(0, 5);
+    e.target.value = zipCode;
+});
+
+
 $('#btnLogin').on('click', function () {
     let strUsername = $('#txtUsername').val().trim();
     let strPassword = $('#txtPassword').val();
