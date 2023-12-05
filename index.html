@@ -190,7 +190,7 @@
             </h3>
         </div>
         <div class="card-body dashboard">
-            <div class="sidebar col-2" id="dashSideBar" aria-label="Dashboard Side bar">
+            <div class="sidebar" id="dashSideBar" aria-label="Dashboard Side bar">
                 <button type="button" class="btn btn-secondary mb-1" id="homepagebtn" aria-label="Homepage Button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
                         class="bi bi-house" viewBox="0 0 16 16">
@@ -237,7 +237,7 @@
                         </path>
                     </svg>
                 </button>
-                <button type="button" class="btn btn-secondary" aria-label="Egg Button" id="eggbtn">
+                <button type="button" class="btn btn-secondary mb-1" aria-label="Egg Button" id="eggbtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-egg"
                         viewBox="0 0 16 16">
                         <path
@@ -245,9 +245,15 @@
                         </path>
                     </svg>
                 </button>
+                <button type="button" class="btn btn-secondary" aria-label="Logout Button" id="logoutbtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+                        <path d="M7.5 1v7h1V1z"/>
+                        <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812"/>
+                      </svg>
+                </button>
             </div>
             <div class="row mx-1" aria-label="Homepage" id="homepage">
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Lights" id="homepageLights">
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Lights" id="homepageLights">
                     <div id="homepageLightsStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -266,7 +272,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Heat" id="homepageHeat">
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Door" id="homepageDoor">
+                    <div id="homepageDoorStatusCard">
+                        <div class="card text-white bg-success w-100">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <h5 class="card-title text-center mb-3">Door Status</h5>
+                                <div class="mb-2 d-flex align-items-center justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                                        class="bi bi-door-open" viewBox="0 0 16 16">
+                                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1">
+                                        </path>
+                                        <path
+                                            d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <label class="form-check-label justify-content-center mt-2"
+                                    id="homepageDoorStatus">null</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Heat" id="homepageHeat">
                     <div id="homepageHeatStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -288,7 +315,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Fan" id="homepageFan">
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Fan" id="homepageFan">
                     <div id="homepageFanStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -307,28 +334,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Door" id="homepageDoor">
-                    <div id="homepageDoorStatusCard">
-                        <div class="card text-white bg-success w-100">
-                            <div class="card-body d-flex flex-column align-items-center">
-                                <h5 class="card-title text-center mb-3">Door Status</h5>
-                                <div class="mb-2 d-flex align-items-center justify-content-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
-                                        class="bi bi-door-open" viewBox="0 0 16 16">
-                                        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1">
-                                        </path>
-                                        <path
-                                            d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z">
-                                        </path>
-                                    </svg>
-                                </div>
-                                <label class="form-check-label justify-content-center mt-2"
-                                    id="homepageDoorStatus">null</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Food and Water" id="homepageFoodWater">
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Food" id="homepageFood">
                     <div class="mb-2" id="homepageFoodStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -349,6 +355,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Water" id="homepageWater">
                     <div id="homepageWaterStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -370,7 +378,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-2" aria-label="Homepage Eggs" id="homepageEggs">
+                <div class="col-12 col-md-6 mb-2" aria-label="Homepage Eggs" id="homepageEggs">
                     <div id="homepageEggStatusCard">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
@@ -385,6 +393,24 @@
                                 </div>
                                 <label class="form-check-label justify-content-center mt-2"
                                     id="homepageEggCount">null</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-2" aria-label="Logout Tile" id="homepageLogout">
+                    <div id="homepageLogoutCard">
+                        <div class="card text-white bg-success w-100">
+                            <div class="card-body d-flex flex-column align-items-center">
+                                <h5 class="card-title text-center mb-3">Logout</h5>
+                                <div class="mb-2 d-flex align-items-center justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+                                        class="bi bi-power" viewBox="0 0 16 16">
+                                        <path d="M7.5 1v7h1V1z" />
+                                        <path
+                                            d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812" />
+                                    </svg>
+                                </div>
+                                <label class="form-check-label justify-content-center mt-2 text-success user-select-none">Easter Egg</label>
                             </div>
                         </div>
                     </div>

@@ -90,6 +90,7 @@ $('#btnLogin').on('click', function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp(function () {
+                        
                         checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });

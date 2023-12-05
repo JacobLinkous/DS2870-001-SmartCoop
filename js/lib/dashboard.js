@@ -424,6 +424,21 @@ function waterUse(){
    }, 20000);
 }
 
+function logout(){
+    $.ajax({
+        url: 'https://simplecoop.swollenhippo.com/sessions.php',
+        type: 'DELETE',
+        data: "SessionID="+sessionStorage.getItem("SessionID"),
+        success: function(){
+            sessionStorage.clear();
+            $('#txtPassword').val('');
+            $('#dashboardCard').slideUp(function () {
+                $('#loginCard').slideDown();
+            });
+        }
+    });
+}
+
 //light controls
 $('#lightsAutoSwitchControl').on('change', function(){
     if($('#lightsAutoSwitchControl').is(':checked')){
@@ -486,34 +501,6 @@ $('#doormanualcontrol').on('change', function(){
     }
 });
 
-/*
-$('#manualDoorOpen').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Open",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-            });
-        }
-    });
-});
-
-$('#manualDoorClose').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Close",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-                $("#doorDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
-            });
-        }
-    });
-});
-*/
-
 //temp controls
 $('#autoHeatOnSubmit').on('click', function(){
     autoHeat();
@@ -532,45 +519,6 @@ $('#fanOnTimerSubmit').on('click', function(){
     heatOff();
     fanOn();
 });
-
-/*
-$('#manualFanOff').on('click', function () {
-    fanOff()
-});
-
-$('#manualHeatOff').on('click', function () {
-    heatOff()
-});
-
-$('#manualFanOn').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Fan&value=On",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
-                $("#temperatureFanStatus").html("<b>"+fanReuslt.Value+"</b>");
-            });
-            heatOff()
-            
-        }
-    });
-});
-
-$('#manualHeatOn').on('click', function () {
-    $.ajax({
-        url: 'https://simplecoop.swollenhippo.com/settings.php',
-        type: 'PUT',
-        data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Heat&value=On",
-        success: function(){
-            $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Heat"}, function(heatReuslt){
-                $("#temperatureHeatStatus").html("<b>"+heatReuslt.Value+"</b>");
-            })
-            fanOff()
-        }
-    });
-});
-*/
 
 $('#heatmanualcontrol').on('change', function () {
     if($('#heatmanualcontrol').is(':checked')){
@@ -671,4 +619,9 @@ $('#eggCountSubmit').on('click', function(){
             data: "SessionID="+ sessionStorage.getItem("SessionID") +"&setting=TotalEggs&value="+ eggCount,
         });
     });
+});
+
+//Logout
+$('#logoutbtn').on('click', function () {
+    logout();
 });

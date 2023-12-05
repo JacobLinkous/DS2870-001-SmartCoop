@@ -153,3 +153,6 @@ $('#homepageEggStatusCard').on('click', function () {
     egg();
 });
 
+$('#homepageLogoutCard').on('click', function () {
+    logout();
+});
