@@ -84,13 +84,13 @@ $('#btnLogin').on('click', function () {
                     icon: 'error',
                     html: sessionResult.Error
                 });
-            } else if(sessionResult.Outcome == "false"){
+            } else if (sessionResult.Outcome == "false") {
                 Swal.fire({
                     icon: 'error',
                     html: "Account Not Found"
                 });
                 $('#txtPassword').val('');
-            }else {
+            } else {
                 sessionStorage.setItem("SessionID", sessionResult.SessionID);
                 setTimeout(function () {
                     Swal.close()
@@ -102,7 +102,6 @@ $('#btnLogin').on('click', function () {
                 }, 500);
             }
         });
-
     }
 });
 
