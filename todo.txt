@@ -5,9 +5,7 @@ login password requirements
 check for moble/small screen usage
 	get rid of side bar if too small and add back button
 	make dashboard card bigger on smaller screen
-aria-labels
-	gpt
+	fix eggs
 zipcode mask
-Food and water Card
 Homepage card
-egg Card
+
