@@ -114,32 +114,32 @@ body {
 }
 
 #lightswitch {
-    transform: scale(1.25); 
+    transform: scale(1.25);
     align-content: center;
     justify-content: center;
 }
 
 #doorswitch {
-    transform: scale(1.25); 
+    transform: scale(1.25);
     align-content: center;
     justify-content: center;
 }
 
 #fanswitch {
-    transform: scale(1.25); 
+    transform: scale(1.25);
     align-content: center;
     justify-content: center;
 }
 
 #heatswitch {
-    transform: scale(1.25); 
+    transform: scale(1.25);
     align-content: center;
     justify-content: center;
 }
 
 @media (min-width: 768px) {
     .custom-margin-right {
-      margin-right: 200px; /* Adjust the margin as needed */
+        margin-right: 200px;
+        /* Adjust the margin as needed */
     }
-  }
-  
+}

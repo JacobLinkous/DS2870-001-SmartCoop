@@ -90,7 +90,7 @@ $('#btnLogin').on('click', function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp(function () {
-                        
+
                         checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });
@@ -162,7 +162,7 @@ $('#btnRegister').on('click', function () {
         }
     }
 
-    
+
     if (strFirstName == '') {
         blnError = true;
         strErrorMessage += "<h5>First Name can't be blank.</h5>";
@@ -230,8 +230,8 @@ $('#btnRegister').on('click', function () {
                                 $.ajax({
                                     url: 'https://simplecoop.swollenhippo.com/coop.php',
                                     type: 'PUT',
-                                    data: "SessionID="+sessionResult.SessionID+"&Street1="+strStreetAddress1+"&Street2="+strStreetAddress2+"&City="+strCity+"&State="+strState+"&ZIP="+strZipCode+"",
-                                    success: function(data) {
+                                    data: "SessionID=" + sessionResult.SessionID + "&Street1=" + strStreetAddress1 + "&Street2=" + strStreetAddress2 + "&City=" + strCity + "&State=" + strState + "&ZIP=" + strZipCode + "",
+                                    success: function (data) {
                                         sessionStorage.setItem("SessionID", sessionResult.SessionID);
                                         Swal.fire({
                                             icon: 'success',
@@ -249,7 +249,7 @@ $('#btnRegister').on('click', function () {
                                         checkStatusHomePage();
                                     }
                                 });
-                            }       
+                            }
                         });
                     }
                 });
