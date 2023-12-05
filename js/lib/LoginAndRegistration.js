@@ -32,10 +32,43 @@ $('#btnLogin').on('click', function () {
         strErrorMessage += "<h5>Email is invalid.</h5>";
     }
 
-    if (strPassword == '') {
+    if (strPassword === '') {
         blnError = true;
         strErrorMessage += "<h5>Password can't be blank.</h5>";
+    } else {
+        let requirements = [];
+
+        if (strPassword.trim().length < 8) {
+            requirements.push("Password can't be shorter than 8 characters.");
+        }
+
+        if (!/[A-Z]/.test(strPassword)) {
+            requirements.push("Password must contain at least one uppercase letter.");
+        }
+
+        if (!/[a-z]/.test(strPassword)) {
+            requirements.push("Password must contain at least one lowercase letter.");
+        }
+
+        if (!/\d/.test(strPassword)) {
+            requirements.push("Password must contain at least one number.");
+        }
+
+        if (!/[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/.test(strPassword)) {
+            requirements.push("Password must contain at least one special character.");
+        }
+
+        if (requirements.length > 0) {
+            blnError = true;
+            strErrorMessage += "<h5>Password requirements not met:</h5>";
+            strErrorMessage += "<ul>";
+            requirements.forEach(req => {
+                strErrorMessage += `<li>${req}</li>`;
+            });
+            strErrorMessage += "</ul>";
+        }
     }
+
 
     if (blnError == true) {
         Swal.fire({
@@ -128,6 +161,7 @@ $('#btnRegister').on('click', function () {
         }
     }
 
+    
     if (strFirstName == '') {
         blnError = true;
         strErrorMessage += "<h5>First Name can't be blank.</h5>";
