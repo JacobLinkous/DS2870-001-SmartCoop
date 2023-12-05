@@ -83,20 +83,25 @@ $('#btnLogin').on('click', function () {
                 Swal.fire({
                     icon: 'error',
                     html: sessionResult.Error
-                })
-            } else {
+                });
+            } else if(sessionResult.Outcome == "false"){
+                Swal.fire({
+                    icon: 'error',
+                    html: "Account Not Found"
+                });
+                $('#txtPassword').val('');
+            }else {
                 sessionStorage.setItem("SessionID", sessionResult.SessionID);
                 setTimeout(function () {
                     Swal.close()
                     $('#registerCard').slideUp();
                     $('#loginCard').slideUp(function () {
-
                         checkStatusHomePage();
                         $('#dashboardCard').slideDown();
                     });
                 }, 500);
             }
-        })
+        });
 
     }
 });
