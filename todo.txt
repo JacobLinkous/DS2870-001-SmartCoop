@@ -1,8 +1,2 @@
-Logout
-	delete all session storage
-	send delete request to session id
-check for moble/small screen usage
-	get rid of side bar if too small and add back button
-	make dashboard card bigger on smaller screen
-aria-labels
-	gpt
+
+
