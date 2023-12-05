@@ -528,7 +528,7 @@
             </div>
             <div class="row" id="temperature" style="display: none;">
                 <!--manual heat control-->
-                <div class="col-4 offset-4 mb-0 text-center card" id="temperatureCurrent">
+                <div class="col-6 offset-3 mb-0 text-center card border-2" id="temperatureCurrent">
                     <p id="temperatureCurrentStatus" class="mb-0">null</p>
                     <p id="temperatureCurrentHumidity" class="mb-0">null</p>
                 </div>
@@ -639,26 +639,26 @@
                 </div>
             </div>
             <div class="row" id="egg" style="display: none;">
-                <div class="col-6 card" id="eggCount">
-                    <div class="col-12 col-md-6 mb-md-0 mb-3">
-                        <div class="card text-white bg-success w-100">
+                <div class="col-12 col-md-6 align-items-center offset-2" id="eggCount">
+                    <div class="col-12 mb-md-0 mb-3">
+                        <div class="card border-success border-2 w-100">
                             <div class="card-body d-flex flex-column align-items-center">
-                                <h5 class="card-title text-center mb-3">Add Eggs</h5>
-                                <div class="mb-2 d-flex align-items-center justify-content-center">
+                                <h5 class="card-title text-center mb-3" style="font-weight: bold;">Add Eggs</h5>
+                                <div class="mb-2 d-flex align-items-center justify-content-center" style="text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
                                         class="bi bi-plus-lg" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
                                     </svg>
                                 </div>
-                                <input type="number" placeholder="Egg Count" class="col-10 mb-2" id="eggCountInput">
+                                <input type="number" placeholder="Egg Count" class="col-10 mb-2 text-center border-2" id="eggCountInput">
                                 <div>
                                     <button type="button" id="eggCountSubmit" class="btn btn-success">Submit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 mb-md-0 mb-3">
+                    <div class="col-12 mb-md-0 mb-3">
                         <div class="card text-white bg-success w-100">
                             <div class="card-body d-flex flex-column align-items-center">
                                 <h5 class="card-title text-center mb-3">Total Eggs</h5>
