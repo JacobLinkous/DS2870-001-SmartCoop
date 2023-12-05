@@ -1,6 +1,40 @@
 let FoodAlarmStart = true;
 let WaterAlarmStart = true;
 
+function getCoopID(){
+    $.post('https://simplecoop.swollenhippo.com/coop.php',function(result){
+        console.log(result);
+    })
+}
+
+function getWeather(){
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=38501,us&appid=f9cd6c6a1f0237008e9fd5c6f964fbd4`;
+
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        let temperature = data.main.temp;
+        let humidity = data.main.humidity;
+        temperature = (Math.trunc((temperature-273.15)*(9/5)+32));
+        sessionStorage.setItem("currentHumidity", humidity);
+        sessionStorage.setItem("currentTemp", temperature);
+        $('#temperatureCurrentHumidity').html("<b>Outside Humidity: "+humidity+"%</b>");
+        $('#temperatureCurrentStatus').html("<b>Outside Temperature: "+temperature+"°F</b>");
+        return;
+    })
+}
+
+function getTime(){
+    let date = new Date();
+    return ((date.getHours()*60) + date.getMinutes());
+}
+
+function toHoursAndMinutes(totalMinutes) {
+    let hours = Math.floor(totalMinutes / 60);
+    let minutes = totalMinutes % 60;
+    return (hours + ':' + minutes)
+}
+
 function checkStatusHomePage(){
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
         if(lightsReuslt.Value == 'On'){
@@ -8,7 +42,7 @@ function checkStatusHomePage(){
         } else if(lightsReuslt.Value == 'Off'){
             $("#homepageLightsStatus").html("<b>"+lightsReuslt.Value+"</b>");
         } else {
-            $("#homepageLightsStatus").html("<b>Auto | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+            $("#homepageLightsStatus").html("<b>Auto | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + toHoursAndMinutes(lightsReuslt.Value.split('|')[2]) +"</b>");
         }
     });
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Fan"}, function(fanReuslt){
@@ -23,7 +57,7 @@ function checkStatusHomePage(){
         } else if(doorReuslt.Value == 'Close'){
             $("#homepageDoorStatus").html("<b>"+doorReuslt.Value+"</b>");
         } else {
-            $("#homepageDoorStatus").html("<b>Auto | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+            $("#homepageDoorStatus").html("<b>Auto | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + toHoursAndMinutes(doorReuslt.Value.split('|')[2]) +"</b>");
         }    
     });
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Water"}, function(waterReuslt){
@@ -33,7 +67,7 @@ function checkStatusHomePage(){
         $("#homepageFoodStatus").html("<b>Food|"+ foodReuslt.Value +"%</b>");
     });
     $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"TotalEggs"}, function(eggReuslt){
-        $("#homepageEggCount").html("<b>Eggs|"+ eggReuslt.Value +"</b>");
+        $("#homepageEggCount").html("<b>"+ eggReuslt.Value +"</b>");
     }); 
 }
 
@@ -67,33 +101,10 @@ function createAllSettings(){
     });
 }
 
-function getWeather(){
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=38501,us&appid=f9cd6c6a1f0237008e9fd5c6f964fbd4`;
-
-    fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-        let temperature = data.main.temp;
-        let humidity = data.main.humidity;
-        console.log(humidity);
-        temperature = (Math.trunc((temperature-273.15)*(9/5)+32));
-        sessionStorage.setItem("currentHumidity", humidity);
-        sessionStorage.setItem("currentTemp", temperature);
-        $('#temperatureCurrentHumidity').html("<b>Outside Humidity: "+humidity+"%</b>");
-        $('#temperatureCurrentStatus').html("<b>Outside Temperature: "+temperature+"°F</b>");
-        return;
-    })
-}
-
-function getTime(){
-    let date = new Date();
-    return ((date.getHours()*60) + date.getMinutes());
-}
-
 function autoLights(){
-    let turnOnLights = $('#LightsOnTime').val();
+    let turnOnLights = $('#lightsOnTime').val();
     turnOnLights = (turnOnLights.split(':')[0]*60) + (turnOnLights.split(':')[1]*1);
-    let turnOffLights = $('#LightsOffTime').val();
+    let turnOffLights = $('#lightsOffTime').val();
     turnOffLights = (turnOffLights.split(':')[0]*60) + (turnOffLights.split(':')[1]*1);
     let lightChecker = setInterval(function (){
         $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
@@ -107,11 +118,11 @@ function autoLights(){
                 sessionStorage.setItem("LightsOn", turnOnLights);
                 sessionStorage.setItem("LightsOff", turnOffLights);
                 if(getTime() <= turnOffLights && getTime() >= turnOnLights){
-                    $("#lightsLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " On | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
-                    $("#homepageLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " On | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+                    $("#lightsLightsStatus").html("<b>"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[0]) + " On | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+                    $("#homepageLightsStatus").html("<b>"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[0]) + " On | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
                 }else{
-                    $("#lightsLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " Off | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
-                    $("#homepageLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " Off | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+                    $("#lightsLightsStatus").html("<b>"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[0]) + " Off | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+                    $("#homepageLightsStatus").html("<b>"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[0]) + " Off | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
                 }
             }      
         });
@@ -123,7 +134,7 @@ function autoLights(){
         data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Lights&value=Auto|" + turnOnLights + "|" + turnOffLights,
         success: function(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Lights"}, function(lightsReuslt){
-                $("#lightsLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " | Start:"+ (lightsReuslt.Value.split('|')[1]) + " to End:" + (lightsReuslt.Value.split('|')[2]) +"</b>");
+                $("#lightsLightsStatus").html("<b>"+ (lightsReuslt.Value.split('|')[0]) + " | Start:"+ toHoursAndMinutes(lightsReuslt.Value.split('|')[1]) + " to End:" + toHoursAndMinutes(lightsReuslt.Value.split('|')[2]) +"</b>");
             });
         }
     });
@@ -146,11 +157,11 @@ function autoDoor(){
                 sessionStorage.setItem("DoorOpen", openDoor);
                 sessionStorage.setItem("DoorClose", closeDoor);
                 if(getTime() <= closeDoor && getTime() >= openDoor){
-                    $("#doorDoorStatus").html("<b>"+ (doorReuslt.Value.split('|')[0]) + " Open | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
-                    $("#homepageDoorStatus").html("<b>"+ (doorReuslt.Value.split('|')[0]) + " Open | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+                    $("#doorDoorStatus").html("<b>"+ toHoursAndMinutes(doorReuslt.Value.split('|')[0]) + " Open | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+                    $("#homepageDoorStatus").html("<b>"+ toHoursAndMinutes(doorReuslt.Value.split('|')[0]) + " Open | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
                 }else{
-                    $("#doorDoorStatus").html("<b>"+ (doorReuslt.Value.split('|')[0]) + " Close | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
-                    $("#homepageDoorStatus").html("<b>"+ (doorReuslt.Value.split('|')[0]) + " Close | Start:"+ (doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+                    $("#doorDoorStatus").html("<b>"+ toHoursAndMinutes(doorReuslt.Value.split('|')[0]) + " Close | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
+                    $("#homepageDoorStatus").html("<b>"+ toHoursAndMinutes(doorReuslt.Value.split('|')[0]) + " Close | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + (doorReuslt.Value.split('|')[2]) +"</b>");
                 }
             }      
         });
@@ -162,7 +173,7 @@ function autoDoor(){
         data: "SessionID="+sessionStorage.getItem("SessionID")+"&setting=Door&value=Auto|" + openDoor + "|" + closeDoor,
         success: function(){
             $.getJSON('https://simplecoop.swollenhippo.com/settings.php', { SessionID:sessionStorage.getItem("SessionID"), setting:"Door"}, function(doorReuslt){
-                $("#doorDoorStatus").html("<b>Auto | Start:"+ openDoor + " to End:" + closeDoor +"</b>");
+                $("#doorDoorStatus").html("<b>Auto | Start:"+ toHoursAndMinutes(doorReuslt.Value.split('|')[1]) + " to End:" + toHoursAndMinutes(doorReuslt.Value.split('|')[2]) +"</b>");
             });
         }
     });
